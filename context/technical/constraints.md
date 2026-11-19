@@ -7,6 +7,7 @@ sources:
   - _raw/2026-11-19-brief/4-dod-build-pt2.png
   - _raw/2026-11-19-brief/5-evaluation-criteria.png
   - _raw/2026-11-19-brief/6-brief-closing.png
+  - references/html-hello-template.md
 updated: 2026-11-19
 status: stable
 ---
@@ -32,9 +33,14 @@ Static HTML, Tailwind from a CDN, vanilla JS, hardcoded data, no backend.
 
 ## Implementation notes _(inferred, not from the brief)_
 
-- The Tailwind Play CDN defaults to media-query dark mode. A manual toggle
-  needs `tailwind.config = { darkMode: 'class' }` set in a script tag, then a
-  `dark` class toggled on `<html>`.
+- **Tailwind version matters for dark mode.** The 4Geeks starter template
+  points to the v4 browser CDN (`@tailwindcss/browser@4`). Both v3 and v4 CDNs
+  default to media-query dark mode, so a manual toggle needs opting in to
+  class-based dark mode, then toggling a `dark` class on `<html>`:
+  - v3 Play CDN (`cdn.tailwindcss.com`): `tailwind.config = { darkMode: 'class' }` in a script tag.
+  - v4 browser CDN: `@custom-variant dark (&:where(.dark, .dark *));` inside a
+    `<style type="text/tailwindcss">` block. Whether that block counts as
+    "custom CSS" under the brief is an open question.
 - If the panel is split into several HTML files, keeping the dark mode choice
   between pages needs `localStorage` (or similar). A single-page `index.html`
   with section switching avoids that.

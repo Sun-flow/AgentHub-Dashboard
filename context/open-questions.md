@@ -28,3 +28,13 @@ it is answered.
 10. **Repo layout vs the brief.** `SPECS.md` must sit at the repo root and be
     committed before any HTML. This repo's `main` already has the `context/`
     folder (markdown only, no HTML), which should be fine, but worth confirming.
+
+## From the html-hello template (2026-11-19)
+
+11. **Tailwind v3 or v4 CDN?** The 4Geeks template uses v4. In v4, class-based
+    dark mode needs a `<style type="text/tailwindcss">` block with
+    `@custom-variant`. That is not a CSS file or an inline `style` attribute,
+    but a strict reader of "no custom CSS" might object. The v3 Play CDN avoids
+    it with a JS config. _(references/html-hello-template.md)_
+12. **Start from the template or not?** mae thinks it is largely unnecessary;
+    this repo currently does not include it.

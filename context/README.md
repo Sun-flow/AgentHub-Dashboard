@@ -40,8 +40,9 @@ app code.
 | [domain/entities.md](domain/entities.md) | Users, clients, agents, skills, contracts, errors and how they relate | brief bundle | 2026-11-19 |
 | [technical/constraints.md](technical/constraints.md) | HTML, Tailwind CDN, vanilla JS, no backend | brief bundle | 2026-11-19 |
 | [references/tools.md](references/tools.md) | Tailwind, Google Stitch, Git | brief bundle | 2026-11-19 |
+| [references/html-hello-template.md](references/html-hello-template.md) | 4Geeks starter repo: what it has and what matters | GitHub link | 2026-11-19 |
 | [decisions/2026-11-19-repo-workflow.md](decisions/2026-11-19-repo-workflow.md) | Context goes straight to main | mae, chat | 2026-11-19 |
-| [open-questions.md](open-questions.md) | 10 open questions from the brief | brief bundle | 2026-11-19 |
+| [open-questions.md](open-questions.md) | 12 open questions | brief bundle, template | 2026-11-19 |
 
 ## Ingestion log
 
@@ -49,3 +50,4 @@ app code.
 | --- | --- | --- |
 | 2026-11-19 | Project brief bundle: 5 screenshots + context message ([_raw/2026-11-19-brief/](_raw/2026-11-19-brief/README.md)) | All notes above created |
 | 2026-11-19 | Brief closing lines (`_raw/2026-11-19-brief/6-brief-closing.png`) | product/overview.md, technical/constraints.md |
+| 2026-11-19 | 4Geeks html-hello template README (link) | references/html-hello-template.md (new), technical/constraints.md, open-questions.md |

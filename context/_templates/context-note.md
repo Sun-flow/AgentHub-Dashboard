@@ -1,6 +1,6 @@
 ---
 title: <Short title>
-topic: product | domain | technical | references | decisions
+topic: brief | dod | deliverable | domain | setup | reference | decision
 sources:
   - <_raw/file, link, or "mae, chat YYYY-MM-DD">
 updated: YYYY-MM-DD

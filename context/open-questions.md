@@ -1,42 +1,26 @@
 # Open questions
 
-Questions raised while ingesting materials, and contradictions between inputs.
-Each entry names the source that raised it. Move an entry to `decisions/` once
-it is answered.
+Gaps in the brief. Each has a **proposed default** that stays within the
+brief, so work is never blocked: if mae hasn't answered by the time a question
+matters, use the default and say so in `SPECS.md`. When mae answers, record it
+in `decisions/` and update this file.
 
-## From the project brief bundle (2026-11-19)
+| # | Question | Proposed default | Affects |
+| --- | --- | --- | --- |
+| Q1 | Who is an agent's "owner"? | The client company that rents it (for idle agents, "AgentHub"). | Agents, Contracts |
+| Q2 | Are users people at client companies, and is "plan" a subscription tier? | Yes: each user belongs to a client company; plan is the company's tier (e.g. Starter / Pro / Enterprise). | Users, data |
+| Q3 | Where do "discount and coupon losses" come from? | Contracts may carry a discount line; the dashboard figure is their sum for the month. Shown in the contract breakdown modal. | Dashboard, Contracts |
+| Q4 | What do "Delete" and "Mark as resolved" do? | Delete removes the row from the page (in memory, no confirmation dialog). Mark as resolved changes the entry's badge to "Resolved" and dims it. Not persisted. Form submission is not evaluated, so keep it simple. | Users, Agents, Skills, Error Log |
+| Q5 | What does the Skill "View detail" modal show? | Name, full description, price, the list of agents that have it enabled, and the contracts that include it. | Skills |
+| Q6 | Which actions does the Contracts dropdown have besides "View detail"? | "View detail" and "Cancel contract" (behaves like Delete for active contracts). | Contracts |
+| Q7 | Which error types/severities and colors? | Severity: Critical (red), Error (orange), Warning (amber), Info (blue). Types: Timeout, API failure, Rate limit, Auth, Invalid output. | Error Log |
+| Q8 | One `index.html` or one file per section? | Single `index.html` with JS section switching. Simpler dark-mode persistence, one place for shared data. | Structure |
+| Q9 | Currency and date formats? | USD (`$12,400.00`), dates `Nov 19, 2026`, timestamps `2026-11-19 14:32 UTC`. | All |
+| Q10 | Does `context/` in the repo conflict with the commit-order rule? | No. It holds only markdown. Never put an `.html` file in it before `SPECS.md` is committed. | Process |
+| Q11 | Tailwind v3 or v4 CDN? | v3 Play CDN with `darkMode: 'class'` in JS config. Avoids any `<style>` block, so "no custom CSS" holds under the strictest reading. | Setup, dark mode |
+| Q13 | Where does the brief's "Follow these instructions" link go? | Ignore unless mae provides it; the rest of the brief is complete without it. | Setup |
 
-1. **Who is an agent's "owner"?** A user, a client company, or AgentHub
-   itself? It affects how Users, Agents, and Contracts link up.
-   _(1-project-brief.png)_
-2. **Users vs clients.** Is a "user" a person at a client company, and is
-   "plan" a client's subscription tier? _(1-project-brief.png)_
-3. **Discount and coupon losses** appear on the Dashboard but nowhere else.
-   Should contracts carry discounts so the number is traceable?
-   _(1-project-brief.png)_
-4. **What should "Delete" and "Mark as resolved" do** in the prototype? Remove
-   the row / change the badge in the DOM, show a confirmation, or do nothing?
-   Form submission is not evaluated, so this is open. _(5-evaluation-criteria.png)_
-5. **Skill "View detail" modal contents** are not specified. _(1-project-brief.png)_
-6. **Contract row actions** besides "View detail" are not named.
-   _(4-dod-build-pt2.png)_
-7. **Error types / severity levels** and their colors are not listed.
-   _(1-project-brief.png)_
-8. **Single file or one file per section?** Both are allowed. Single file makes
-   dark-mode persistence simpler. _(3-dod-build-pt1.png)_
-9. **Currency and date format** for revenue, prices, and timestamps.
-10. **Repo layout vs the brief.** `SPECS.md` must sit at the repo root and be
-    committed before any HTML. This repo's `main` already has the `context/`
-    folder (markdown only, no HTML), which should be fine, but worth confirming.
+## Resolved
 
-## From the html-hello template (2026-11-19)
-
-11. **Tailwind v3 or v4 CDN?** The 4Geeks template uses v4. In v4, class-based
-    dark mode needs a `<style type="text/tailwindcss">` block with
-    `@custom-variant`. That is not a CSS file or an inline `style` attribute,
-    but a strict reader of "no custom CSS" might object. The v3 Play CDN avoids
-    it with a JS config. _(references/html-hello-template.md)_
-12. ~~**Start from the template or not?**~~ Resolved: forking is not
-    required. See `decisions/2026-11-19-no-template-fork.md`.
-13. **"Follow these instructions" link** in the setup steps: target unknown.
-    Worth capturing if it has more guidance. _(7-how-to-start.png)_
+- **Q12 — Must the repo be a fork of html-hello?** No. See
+  [decisions/2026-11-19-no-template-fork.md](decisions/2026-11-19-no-template-fork.md).

@@ -4,6 +4,7 @@ topic: product
 sources:
   - _raw/2026-11-19-brief/README.md (mae's message, Guidelines)
   - _raw/2026-11-19-brief/2-spec-guidelines.png
+  - _raw/2026-11-19-brief/7-how-to-start.png
 updated: 2026-11-19
 status: stable
 ---
@@ -16,6 +17,24 @@ status: stable
 root is the contract with the codebase. It must be committed in its own commit
 before any HTML file exists, and it must be detailed enough that an AI coding
 agent could build the panel from it without asking questions.
+
+## Setup steps from the brief ("How to Start the Project")
+
+1. Fork the template repo `4GeeksAcademy/html-hello`.
+2. Create your own GitHub repo and point the remote at it.
+3. Open it in GitHub Codespaces or clone it locally.
+4. Read the full brief before writing the spec.
+5. Once `SPECS.md` has a first draft, use it as a prompt in Google Stitch for
+   an initial visual proposal.
+6. Use that proposal as reference and adapt it by hand to meet every
+   requirement.
+7. "Need help getting started? Follow these instructions." _(link target not
+   captured in the screenshot)_
+
+**Where this repo stands:** steps 2 and 3 are effectively done
+(`Sun-flow/AgentHub-Dashboard`). It was created fresh, not forked from the
+template; mae considers the template largely unnecessary. See
+[../references/html-hello-template.md](../references/html-hello-template.md).
 
 ## Required order of work
 

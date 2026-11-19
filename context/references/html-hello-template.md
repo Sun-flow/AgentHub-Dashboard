@@ -4,6 +4,7 @@ topic: references
 sources:
   - https://github.com/4GeeksAcademy/html-hello/blob/main/README.md
   - mae, chat 2026-11-19
+  - _raw/2026-11-19-brief/7-how-to-start.png
 updated: 2026-11-19
 status: stable
 ---
@@ -15,6 +16,9 @@ status: stable
 4Geeks Academy names this repo as the base for the project. mae's view: it is
 probably largely unnecessary. It is a near-empty boilerplate for a first
 website, so there is little to inherit beyond one Tailwind detail.
+
+The brief's setup steps say to **fork** it as step 1. This repo was created
+fresh instead, so it is not a fork.
 
 ## What the template contains
 

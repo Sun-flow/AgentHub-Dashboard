@@ -1,6 +1,6 @@
 # Raw input: project brief bundle (2026-11-19)
 
-Sent by mae in the project thread. Six screenshots plus a chat message. The sixth was sent a few minutes after the first five.
+Sent by mae in the project thread. Seven screenshots plus a chat message. The sixth and seventh were sent a few minutes after the first five.
 
 | File | Content |
 | --- | --- |
@@ -10,6 +10,7 @@ Sent by mae in the project thread. Six screenshots plus a chat message. The sixt
 | `4-dod-build-pt2.png` | Skills, Contracts, Error Log, global interactions |
 | `5-evaluation-criteria.png` | "What We Will Evaluate" |
 | `6-brief-closing.png` | Closing lines: quality bar, hardcoded data, and the task statement |
+| `7-how-to-start.png` | "How to Start the Project": 7 setup steps |
 
 ## mae's message (verbatim)
 

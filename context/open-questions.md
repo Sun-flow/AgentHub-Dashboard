@@ -36,5 +36,8 @@ it is answered.
     `@custom-variant`. That is not a CSS file or an inline `style` attribute,
     but a strict reader of "no custom CSS" might object. The v3 Play CDN avoids
     it with a JS config. _(references/html-hello-template.md)_
-12. **Start from the template or not?** mae thinks it is largely unnecessary;
-    this repo currently does not include it.
+12. **Start from the template or not?** The brief's setup steps say to fork
+    it; mae thinks it is largely unnecessary, and this repo is not a fork.
+    Does the evaluation care whether the repo is a fork? _(7-how-to-start.png)_
+13. **"Follow these instructions" link** in the setup steps: target unknown.
+    Worth capturing if it has more guidance. _(7-how-to-start.png)_

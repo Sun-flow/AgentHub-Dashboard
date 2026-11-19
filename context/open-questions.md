@@ -4,4 +4,27 @@ Questions raised while ingesting materials, and contradictions between inputs.
 Each entry names the source that raised it. Move an entry to `decisions/` once
 it is answered.
 
-_None yet._
+## From the project brief bundle (2026-11-19)
+
+1. **Who is an agent's "owner"?** A user, a client company, or AgentHub
+   itself? It affects how Users, Agents, and Contracts link up.
+   _(1-project-brief.png)_
+2. **Users vs clients.** Is a "user" a person at a client company, and is
+   "plan" a client's subscription tier? _(1-project-brief.png)_
+3. **Discount and coupon losses** appear on the Dashboard but nowhere else.
+   Should contracts carry discounts so the number is traceable?
+   _(1-project-brief.png)_
+4. **What should "Delete" and "Mark as resolved" do** in the prototype? Remove
+   the row / change the badge in the DOM, show a confirmation, or do nothing?
+   Form submission is not evaluated, so this is open. _(5-evaluation-criteria.png)_
+5. **Skill "View detail" modal contents** are not specified. _(1-project-brief.png)_
+6. **Contract row actions** besides "View detail" are not named.
+   _(4-dod-build-pt2.png)_
+7. **Error types / severity levels** and their colors are not listed.
+   _(1-project-brief.png)_
+8. **Single file or one file per section?** Both are allowed. Single file makes
+   dark-mode persistence simpler. _(3-dod-build-pt1.png)_
+9. **Currency and date format** for revenue, prices, and timestamps.
+10. **Repo layout vs the brief.** `SPECS.md` must sit at the repo root and be
+    committed before any HTML. This repo's `main` already has the `context/`
+    folder (markdown only, no HTML), which should be fine, but worth confirming.

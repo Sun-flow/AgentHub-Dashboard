@@ -32,10 +32,19 @@ app code.
 
 | Note | Summary | Sources | Updated |
 | --- | --- | --- | --- |
-| _No notes yet._ | | | |
+| [product/overview.md](product/overview.md) | What AgentHub is and what this prototype is for | brief bundle | 2026-11-19 |
+| [product/admin-panel-requirements.md](product/admin-panel-requirements.md) | The six sections, shell, row actions, modals | brief bundle | 2026-11-19 |
+| [product/process-and-spec.md](product/process-and-spec.md) | Spec-first process and what SPECS.md must contain | brief bundle | 2026-11-19 |
+| [product/definition-of-done.md](product/definition-of-done.md) | Build checklist per section | brief bundle | 2026-11-19 |
+| [product/evaluation-criteria.md](product/evaluation-criteria.md) | The 12 criteria the deliverable is judged on | brief bundle | 2026-11-19 |
+| [domain/entities.md](domain/entities.md) | Users, clients, agents, skills, contracts, errors and how they relate | brief bundle | 2026-11-19 |
+| [technical/constraints.md](technical/constraints.md) | HTML, Tailwind CDN, vanilla JS, no backend | brief bundle | 2026-11-19 |
+| [references/tools.md](references/tools.md) | Tailwind, Google Stitch, Git | brief bundle | 2026-11-19 |
+| [decisions/2026-11-19-repo-workflow.md](decisions/2026-11-19-repo-workflow.md) | Context goes straight to main | mae, chat | 2026-11-19 |
+| [open-questions.md](open-questions.md) | 10 open questions from the brief | brief bundle | 2026-11-19 |
 
 ## Ingestion log
 
 | Date | Input | Notes created or updated |
 | --- | --- | --- |
-| _Nothing ingested yet._ | | |
+| 2026-11-19 | Project brief bundle: 5 screenshots + context message ([_raw/2026-11-19-brief/](_raw/2026-11-19-brief/README.md)) | All notes above created |

@@ -4,6 +4,7 @@ topic: product
 sources:
   - _raw/2026-11-19-brief/README.md (mae's message)
   - _raw/2026-11-19-brief/1-project-brief.png
+  - _raw/2026-11-19-brief/6-brief-closing.png
 updated: 2026-11-19
 status: stable
 ---
@@ -28,6 +29,12 @@ engineers.
 - **Who uses the panel:** an internal AgentHub admin who oversees users,
   agents, skills, rental contracts, revenue, and agent failures. _(inferred
   from the six sections; the brief does not describe the admin further)_
+- **Quality bar:** the panel should feel professional and be immediately
+  usable as a reference for future development.
+- **Data:** all hardcoded. The team does not expect API connections or a
+  backend at this stage.
+- **The task, in the brief's words:** write the specification first, commit it
+  to the repository, then build the prototype against it.
 - **Purpose of the prototype:** a reviewable artifact and a handoff reference
   for backend engineers, not production code.
 - **Working method:** spec first. A `SPECS.md` is written and committed before

@@ -6,6 +6,7 @@ sources:
   - _raw/2026-11-19-brief/3-dod-build-pt1.png
   - _raw/2026-11-19-brief/4-dod-build-pt2.png
   - _raw/2026-11-19-brief/5-evaluation-criteria.png
+  - _raw/2026-11-19-brief/6-brief-closing.png
 updated: 2026-11-19
 status: stable
 ---
@@ -23,8 +24,9 @@ Static HTML, Tailwind from a CDN, vanilla JS, hardcoded data, no backend.
 - **Styling:** Tailwind CSS via CDN only. No custom CSS files, no inline
   `style` attributes. Dark mode through Tailwind `dark:` utilities.
 - **Behavior:** vanilla JavaScript only. No React, Vue, jQuery, or build tools.
-- **Data:** hardcoded and consistent across sections. No backend calls (even
-  though AgentHub has a real backend).
+- **Data:** hardcoded and consistent across sections. No backend calls and no API
+  connections (even though AgentHub has a real backend); the team is not
+  expecting either at this stage.
 - **Viewports:** usable on desktop and tablet.
 - **Repo:** `SPECS.md` at the repo root, committed alone before any HTML.
 

@@ -48,3 +48,4 @@ app code.
 | Date | Input | Notes created or updated |
 | --- | --- | --- |
 | 2026-11-19 | Project brief bundle: 5 screenshots + context message ([_raw/2026-11-19-brief/](_raw/2026-11-19-brief/README.md)) | All notes above created |
+| 2026-11-19 | Brief closing lines (`_raw/2026-11-19-brief/6-brief-closing.png`) | product/overview.md, technical/constraints.md |

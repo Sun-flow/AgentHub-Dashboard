@@ -33,7 +33,7 @@ agent could build the panel from it without asking questions.
 
 **Where this repo stands:** steps 2 and 3 are effectively done
 (`Sun-flow/AgentHub-Dashboard`). It was created fresh, not forked from the
-template; mae considers the template largely unnecessary. See
+template, and that is fine: the evaluators don't care whether it is a fork. See
 [../references/html-hello-template.md](../references/html-hello-template.md).
 
 ## Required order of work

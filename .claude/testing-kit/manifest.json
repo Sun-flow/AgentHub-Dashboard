@@ -1,0 +1,48 @@
+{
+  "version": "0.5.0",
+  "options": {
+    "profile": "standard",
+    "ci": true,
+    "env": false,
+    "owner": ""
+  },
+  "files": {
+    ".claude/agents/spec-test-writer.md": "bbe2eaee12676d1770190030fe482caa69ee915859fec29881aadd1fe20a9ef9",
+    ".claude/agents/test-reviewer.md": "de31ac8a7b9359cf38413a2b0ee89418491bb78b18df3848a1a394bc13d2f79c",
+    ".claude/rules/testing.md": "92569fee81427f154555dcb95aa5e7246e5ca0aa68ea5f6f75d965ada33e1603",
+    ".claude/skills/mutation-check/SKILL.md": "e82295593c677ad602e5175d6dcb5b0ab516badb6706cd75e148e6b009518881",
+    ".claude/skills/run-tests/SKILL.md": "8a47c9f50a5215342630dbd61966cca3c9546df98b6132df0370cf893b2d158c",
+    ".claude/skills/test-review/SKILL.md": "9939a68366b66dd102b818833203b28c3eca5751cf64e3ef49441b67be8a6013",
+    ".claude/skills/write-tests/SKILL.md": "5c8341a4de1d63f789ad26966d492a3ce60e2512d5a6da2718b4acf3ad292276",
+    ".claude/testing-kit/base_tests.py": "c0c2b75372f41eaa26ec2bd273cee825d42610444f551e0c2a9232a83ddf0e51",
+    ".claude/testing-kit/bash_audit.py": "73857a24898e05cf31810673add4f5eaf30ad8be85902aa339877e31c6a9664d",
+    ".claude/testing-kit/config_guard.py": "254f976f6ce8b58a8be02ac89c0e8ecc11982cf3bdf90a68d96b5de0c5190f1b",
+    ".claude/testing-kit/guard_bash.py": "ac13e7b664322a8012021fd3e071333c5a885e5d95362eb5f27b719c692a43a5",
+    ".claude/testing-kit/guard_test_edits.py": "fb9a0c3f31fa0906a276a0d569ff7e49c61246f06348cb96744e0a237d31bffd",
+    ".claude/testing-kit/kitlib.py": "50167f8ed49a8db4f2beaa29a66c1cbbe40a06da0539e4b735476ef4d6c34bbb",
+    ".claude/testing-kit/no_src_access.py": "9491e431adf48620ae416568955abe92223c69bc23dea0c087c4aa0c0632bbc8",
+    ".claude/testing-kit/protect_tests.py": "2ce4a699ce37299411f6bb6f92cba5f6090a6ee2e50ff9ec402b00ff82ab7fd9",
+    ".claude/testing-kit/test_diff_guard.py": "9b39bb12d6fc4e18d90d7940695d1746e2d5fe61f2a81cc243c0183ed7cff2dc",
+    ".claude/testing-kit/test_report.py": "b02e1909448940788d25c2e8889599696fa2a69fac586d2ab2af048f4e02e551",
+    ".claude/testing-kit/tests_on_stop.py": "363e2d6a891e05491ff28fd98367ef7015eb0b63fbeb5474488219d9b78f8d6d",
+    ".github/workflows/testing-kit.yml": "407997d4b4c701b7b72858b7d79a618a4e8cf38fb3726c1c3d62226d5e6ed792",
+    "docs/testing/GUIDELINES.md": "31eaa754045d7b4f6aaecc0de39bf17ab95d4191d842199952c779b8a5f53159",
+    "docs/testing/KIT-GUIDE.md": "a961a6228d48c3b3a7336a5f34ef2a478431ed4010684d6965c553aa108d381e",
+    "docs/testing/REVIEW-PROTOCOL.md": "db0d784eb052035cc3e298f00837f56e7bbc0d70e029cba2f663727f4e9300be"
+  },
+  "settings": {
+    "created": true,
+    "deny_added": [
+      "Edit(./.claude/allow-test-edits)",
+      "Edit(./.claude/settings.local.json)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Write(./.claude/allow-test-edits)",
+      "Write(./.claude/settings.local.json)"
+    ],
+    "keys_added": [
+      "disableAllHooks"
+    ]
+  },
+  "claude_md_created": true
+}

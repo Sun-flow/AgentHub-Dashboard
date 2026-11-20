@@ -8,29 +8,33 @@ This block is the only place the project's status is written. Rewrite it
 before you stop (routine in [setup.md](setup.md)); do not append to it. On a
 branch it describes that branch, so it is already true when the branch merges.
 
-- **State:** `SPECS.md` is on `main` (PR #4, commit `4811646`, alone and
-  before any HTML), and so are the accessibility items W1–W9 (PR #5). Phases
-  1–3 are done except the W follow-up below. All open questions are settled:
-  Q1, Q2, Q14 and Q15 took their defaults
-  ([decisions/2026-11-20-defaults-accepted.md](decisions/2026-11-20-defaults-accepted.md)).
-  There is no HTML and no automated test.
-- **Last session (2026-11-20):** wrote `SPECS.md`, including the full dataset,
-  which went straight into section 14, so `context/dataset.md` was never
-  created. A script checked the data: contract totals, list = monthly price ×
-  term, skill counts 4/3/3/3/2/2, tier rules, and dashboard values
-  $49,740.00 / $5,160.00 / 3 / 2. A fresh agent then cold-read the spec; its
-  small ambiguities were fixed before the commit. This branch records the
-  defaults and ticks the checklists.
-- **In progress:** another session is adding the accessibility gaps (W4–W7:
-  skip link, `aria-hidden` on SVGs, `motion-reduce:transition-none`,
-  `aria-labelledby`, a contrast check) to `SPECS.md` in a commit of its own.
-  Check for its branch or pull request before touching `SPECS.md`.
-- **Next action:** once the W update merges, start Phase 4 (Google Stitch
-  proposal from `SPECS.md`). This needs mae or an agent with browser access.
-- **Waiting on mae:** merging this pull request and the W update.
-- **Tried and ruled out:** a separate `context/dataset.md`. It would have
-  needed a deletion PR later, so the data went directly into the spec.
-- **Last verified:** `python3 context/check.py` on this branch (2026-11-20).
+- **State:** `SPECS.md` is on `main`: first version in PR #4 (commit
+  `4811646`, alone and before any HTML), accessibility rules added in PR #7
+  (13.7, acceptance criteria 49–56). The DoD has accessibility items W1–W9
+  (PR #5). All open questions are settled: Q1, Q2, Q14 and Q15 took their
+  defaults ([decisions/2026-11-20-defaults-accepted.md](decisions/2026-11-20-defaults-accepted.md)).
+  Phases 1–3 are done. There is no HTML and no automated test.
+- **Last sessions (2026-11-20):** wrote `SPECS.md` with the full dataset in
+  section 14, so `context/dataset.md` was never created. A script checked the
+  data: contract totals, list price = monthly price × term, skill counts
+  4/3/3/3/2/2, tier rules, and dashboard values $49,740.00 / $5,160.00 / 3 / 2.
+  A fresh agent then cold-read the spec. A second session added the
+  accessibility rules: skip link, `sr-only` `<h1>`, `aria-labelledby`,
+  `aria-hidden` icons, `inert` collapsed lists, `motion-reduce`, and muted text
+  instead of `opacity-50` for contrast. This branch records the defaults and
+  ticks the checklists.
+- **In progress:** nothing half-finished.
+- **Next action:** Phase 4, the Google Stitch proposal from `SPECS.md`
+  ([deliverables/2-stitch-proposal.md](deliverables/2-stitch-proposal.md)).
+  It needs mae or an agent with browser access.
+- **Waiting on mae:** merging this pull request.
+- **Tried and ruled out:** a separate `context/dataset.md`, because it would
+  have needed a deletion PR later. Keeping `opacity-50` on dimmed rows: axe-core
+  counts opacity in contrast, and half-opacity slate text fails 4.5:1.
+- **Last verified:** `python3 context/check.py` printed "0 failed" on this
+  branch after merging `main` (2026-11-20). The muted-text contrast figures
+  were judged from Tailwind's slate scale, not measured; W9's axe scan at
+  build time will measure them.
 
 ## Plan
 
@@ -65,7 +69,7 @@ before it.
 - [x] Write `SPECS.md` at the repo root following [deliverables/1-specs.md](deliverables/1-specs.md)
 - [x] Cold-read test with a fresh agent
 - [x] Commit `SPECS.md` **alone**, before any HTML file exists, in a pull request that holds only that commit (PR #4, commit `4811646`, merged 2026-11-20)
-- [ ] After that pull request is merged, add the accessibility gaps listed in "Now" (W4–W7) to `SPECS.md` in a new commit of its own
+- [x] After that pull request is merged, add the accessibility rules (W1–W9) to `SPECS.md` in a new commit of its own (PR #7, 2026-11-20)
 - [x] ~~Delete `context/dataset.md`~~: not needed, the file was never created
 
 ## Phase 4 — Stitch visual proposal

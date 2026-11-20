@@ -1,6 +1,6 @@
 # AgentHub Admin Panel — Specification
 
-Version 1.0 · Nov 20, 2026
+Version 1.1 · Nov 20, 2026 (1.1 adds accessibility: 13.7 and criteria 49–56)
 
 This document is the contract for the AgentHub admin panel prototype. It is
 written to be complete: a developer or an AI coding agent should be able to
@@ -22,7 +22,7 @@ Contents
 10. Section 5: Agent Contracts
 11. Section 6: Error Log
 12. Component inventory
-13. Interaction rules
+13. Interaction rules (13.7 Accessibility)
 14. Hardcoded dataset
 15. Derived values and formatting
 16. Acceptance criteria
@@ -64,7 +64,7 @@ it: every value is hardcoded.
 | C8 | **No browser dialogs:** never use `alert()`, `confirm()`, or `prompt()`. Confirmation uses the in-page modal. |
 | C9 | **Semantic HTML:** `<aside>` + `<nav>` for the sidebar, `<header>` for the top bar, `<main>` for content, one `<section>` per panel section, `<table>` with `<thead>`/`<tbody>`/`<th scope="col">` for tabular data, `<article>` for agent and skill cards, `<dl>` for label/value lists in modals, `<button>` for every clickable control that is not a link. |
 | C10 | **Viewports:** fully usable at desktop (1280px and wider) and tablet (768px to 1023px) widths with no horizontal page scroll. Narrower than 768px is not required but must not break (same layout as tablet). |
-| C11 | **Icons:** inline SVG, outline style from Heroicons v2 (24×24 viewBox, `fill="none"`, `stroke="currentColor"`, `stroke-width="1.5"`), sized with classes (`size-5` unless stated). Icon names used in this spec are Heroicons names; reproduce each path as closely as you can (an equivalent outline icon with the same meaning is acceptable). The `⋮` action button uses the literal character `⋮` (U+22EE), not an icon. |
+| C11 | **Icons:** inline SVG, outline style from Heroicons v2 (24×24 viewBox, `fill="none"`, `stroke="currentColor"`, `stroke-width="1.5"`), sized with classes (`size-5` unless stated). Every icon is decorative and carries `aria-hidden="true"`: the text or `aria-label` next to it gives the meaning. Icon names used in this spec are Heroicons names; reproduce each path as closely as you can (an equivalent outline icon with the same meaning is acceptable). The `⋮` action button uses the literal character `⋮` (U+22EE), not an icon. |
 | C12 | **Font:** Tailwind's default `font-sans` stack. No web fonts. |
 
 ## 3. Decisions and assumptions
@@ -144,10 +144,11 @@ statuses are lowercase: `active`, `inactive`, `failing`).
 
 ## 5. Layout shell
 
-**SHELL-1 — Page frame.** `<body>` holds one `<div class="flex min-h-screen">`
+**SHELL-1 — Page frame.** The first child of `<body>` is the skip link (13.7). After it, `<body>` holds one `<div class="flex min-h-screen">`
 with two children: the sidebar `<aside>` and a content column
 `<div class="flex min-w-0 flex-1 flex-col">`. The content column holds the
-top bar `<header>` then `<main class="flex-1 p-6">`. `<main>` holds the six
+top bar `<header>` then `<main id="main" class="flex-1 p-6">`. `<main>` starts with
+`<h1 class="sr-only">AgentHub Admin</h1>` (the page's only `<h1>`), then holds the six
 `<section>` elements in this order, with these ids: `dashboard`, `users`,
 `agents`, `skills`, `contracts`, `errors`. Exactly one section is visible at a
 time; the others have the `hidden` class. No ancestor of a table or card list
@@ -193,8 +194,8 @@ text-white text-xs font-semibold` circle with the initials **JL**, followed (fro
 `lg` only) by **Jordan Lee** (`text-sm font-medium`) over **Platform admin**
 (`text-xs` muted).
 
-**SHELL-5 — Section header.** Each `<section>` starts with a `<div>` holding
-its `<h2>` (the section label) and one line of intro text, listed per section
+**SHELL-5 — Section header.** Each `<section>` has `aria-labelledby="<id>-title"` and starts with a `<div>` holding
+its `<h2 id="<id>-title" tabindex="-1">` (the section label) and one line of intro text, listed per section
 below. Sections with a list also show a count on the right of that header,
 muted `text-sm`, e.g. `6 users`; it re-renders after deletes. Counts use the singular for 1 (`1 user`, `1 agent`, `1 skill`, `1 contract`, `1 error`) and the plural otherwise, including 0.
 
@@ -242,7 +243,7 @@ block (`w-full`): a surface card with the heading **Weekly activity**
 (`text-base font-semibold`) and the muted text `Agent runs per day, last 7
 days`. Inside it, a placeholder `div` `mt-4 flex h-64 flex-col items-center
 justify-center gap-2 rounded-lg border-2 border-dashed border-slate-300
-dark:border-slate-700 text-slate-400 dark:text-slate-500`, centered contents:
+dark:border-slate-700 text-slate-500 dark:text-slate-400`, centered contents:
 the `chart-bar` icon (`size-8`), the label `Weekly activity chart` (`text-sm
 font-medium`), and `Chart placeholder: Mon–Sun` (`text-xs`). It has no
 behavior.
@@ -288,7 +289,8 @@ left; on the right either
 - **included** (user's plan ≥ skill's minimum tier): `check-circle` icon in
   `text-emerald-600 dark:text-emerald-400` and the text `Included`; or
 - **locked** (user's plan < skill's minimum tier): the whole row gets
-  `opacity-50` and `aria-disabled="true"`, a `lock-closed` icon, and the text
+  muted text `text-slate-500 dark:text-slate-400` (not `opacity-*`, which
+  would fail contrast), a `lock-closed` icon, and the text
   `Requires <Tier>` (e.g. `Requires Pro`), plus a `title` of
   `Upgrade to <Tier> to unlock`.
 Tier order is Starter < Pro < Enterprise. Example: Sofia Ramirez (Starter) sees
@@ -329,14 +331,15 @@ stand out in the list.
 `Skills (<n>)` on the left, `chevron-down` icon on the right. Below it, the
 panel `<div id="skills-<agentId>">`:
 - **Collapsed (default on load):** `grid grid-rows-[0fr] opacity-0
-  transition-all duration-300 ease-in-out`.
+  transition-all duration-300 ease-in-out motion-reduce:transition-none`,
+  plus the `inert` attribute so the hidden chips are not read by screen readers.
 - **Expanded:** `grid-rows-[1fr] opacity-100` in place of `grid-rows-[0fr]
-  opacity-0`.
+  opacity-0`, and no `inert`.
 - The panel's only child is `<div class="overflow-hidden">` containing a
   `<ul class="flex flex-wrap gap-2 pt-3">` of skill chips (4.3), one per skill
   on the agent, in catalog order.
 Clicking the toggle swaps those classes, flips `aria-expanded`, and rotates the
-chevron (`transition-transform duration-300`, `rotate-180` when expanded).
+chevron (`transition-transform duration-300 motion-reduce:transition-none`, `rotate-180` when expanded).
 Clicking again collapses it with the same 300ms transition. Each card toggles
 independently; several can be open. Open/closed state is kept per agent id, so
 re-rendering after a delete keeps other cards as they were. An agent with no
@@ -509,8 +512,10 @@ is open, a primary **Mark as resolved** button that resolves it (ERR-5) and
 closes the modal.
 
 **ERR-5 — Mark as resolved.** Sets `resolved: true` on the entry in the
-store and re-renders: the row stays in its place and gets `opacity-50` on all
-its cells except the actions cell, the `Resolved` badge appears after the
+store and re-renders: the row stays in its place and is darkened: the `<tr>` gets
+`bg-slate-100 dark:bg-slate-950` and every text cell except the actions cell
+switches to `text-slate-600 dark:text-slate-400` (no `opacity-*`, so the text
+still meets AA contrast), the `Resolved` badge appears after the
 description, the dropdown item becomes disabled **Resolved**, and the header
 count's unresolved number drops by one. E-5008 starts resolved so the dimmed
 state is visible on load. Resolving does not change any agent's status.
@@ -600,7 +605,7 @@ border` (border colors), centered icon. In light mode it shows the `moon`
 icon; in dark mode the `sun` icon, `aria-pressed="true"` and `aria-label="Switch
 to light mode"`. Behavior in 13.4.
 
-**12.11 Tier lock indicator.** A greyed (`opacity-50`, `aria-disabled="true"`)
+**12.11 Tier lock indicator.** A greyed (muted `text-slate-500 dark:text-slate-400`, no `opacity-*`)
 row or element with the `lock-closed` icon and the text `Requires <Tier>`, and
 a `title` of `Upgrade to <Tier> to unlock`. In the skill cards, the lock icon
 inside the tier badge marks skills that need Pro or Enterprise.
@@ -627,7 +632,7 @@ agents.`, `No skills.`
    `toggle-theme`, `menu`, `view-user`, `delete-user`, `toggle-skills`,
    `configure-agent`, `save-prompt`, `delete-agent`, `view-skill`,
    `delete-skill`, `view-contract`, `view-error`, `resolve-error`,
-   `confirm-delete`, and `close-modal` (on ×, Close, Cancel and the backdrop).
+   `confirm-delete`, `skip` (the skip link, 13.7), and `close-modal` (on ×, Close, Cancel and the backdrop).
 
 ### 13.2 Modals
 
@@ -682,6 +687,44 @@ agents.`, `No skills.`
 
 Menu or modal → **Mark as resolved** sets `resolved: true` and re-renders the
 Error Log (ERR-5). No confirmation. It cannot be undone in the prototype.
+
+### 13.7 Accessibility
+
+These rules come from the project's accessibility items (DoD W1–W9). They use
+only markup, ARIA, JavaScript and Tailwind classes.
+
+1. **Skip link.** The first focusable element on the page:
+   `<a href="#main" data-action="skip" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] rounded-lg bg-white px-4 py-2 text-sm font-medium text-indigo-700 shadow-lg dark:bg-slate-900 dark:text-indigo-300">Skip to content</a>`.
+   It is hidden until it gets focus. Activating it calls
+   `event.preventDefault()` (so the hash and the visible section do not change)
+   and moves focus to the visible section's `<h2>`.
+2. **Keyboard.** Every control is a native `<a>` or `<button>` (or the
+   textarea), so Tab, Shift+Tab, Enter and Space work without extra code.
+   Focus order follows the DOM: skip link, sidebar, top bar, then the
+   section. No positive `tabindex`; the only `tabindex` values are the `-1` on
+   section `<h2>`s.
+3. **Focus indicator.** Every interactive element keeps the focus ring from
+   4.1 in both themes. `outline-none` appears only together with a `ring`
+   (the textarea, 8).
+4. **Names and states.** Controls with no visible text have an `aria-label`
+   (`⋮`, ×, the theme toggle); sidebar links keep their label as `sr-only` text
+   on tablet. The Configure textarea has a `<label>`. `aria-current`,
+   `aria-expanded`, `aria-pressed`, `role="dialog"` and `aria-modal` follow
+   12.4, 12.5, 12.10 and 13.1–13.4.
+5. **Not by color alone.** Every status, plan and severity badge shows its
+   name as text; the dots and colors only repeat it.
+6. **Contrast.** All text meets WCAG 2.2 AA (4.5:1, or 3:1 for text 24px and
+   larger) in light and dark, and focus rings meet 3:1. The muted pairs in 4.1
+   (`text-slate-500` on white or `slate-50`, `dark:text-slate-400` on
+   `slate-900` or `slate-950`) pass. Never use `text-slate-400` on a light
+   surface, `dark:text-slate-500` on a dark one, or `opacity-*` on text. The
+   only exception is a disabled `<button disabled>` (ERR-3), which WCAG
+   exempts.
+7. **Reduced motion.** Every class list with a `transition-*` also has
+   `motion-reduce:transition-none`. Menus and modals appear without
+   animation.
+8. **Menus and modals** follow 13.1.4 and 13.2.4: Escape closes them, and focus
+   moves into a modal and back to the control that opened it.
 
 ## 14. Hardcoded dataset
 
@@ -1151,6 +1194,27 @@ The prototype is complete when every item below is true. Check at 1280px and
     panel matches section 14 and 15.
 48. Money shows as `$12,400.00`, dates as `Nov 19, 2026`, timestamps as
     `2026-11-19 14:32 UTC`.
+
+**Accessibility**
+
+49. From page load, the first Tab shows the `Skip to content` link; Enter on
+    it moves focus to the visible section's heading and does not change the
+    section.
+50. Every control in every section, menu and modal can be reached with Tab
+    and used with Enter or Space, in the visual order, with a visible focus
+    ring in light and dark.
+51. Every `<svg>` has `aria-hidden="true"`; every `⋮`, × and the theme toggle
+    has an `aria-label`; the page has exactly one `<h1>`; each `<section>` is
+    labelled by its `<h2>`.
+52. A collapsed skill list is `inert`; an expanded one is not.
+53. With the OS set to reduce motion, the skill list and chevron change
+    instantly.
+54. No text uses `opacity-*`; resolved errors and locked skills are greyed
+    with muted text colors instead.
+55. An axe-core scan of every section, with a menu open and with a modal
+    open, in light and in dark, reports no violations.
+56. Escape closes any open menu or modal, and focus returns to the control
+    that opened it (13.2.4).
 
 ## 17. Out of scope
 

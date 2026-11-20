@@ -62,7 +62,7 @@ it: every value is hardcoded.
 | C6 | **Vanilla JavaScript only:** no frameworks (React, Vue, etc.), no jQuery, no libraries, no npm, no build step. |
 | C7 | **No backend:** no `fetch`, no XHR, no API calls. All data is the hardcoded store in section 14, held in memory. |
 | C8 | **No browser dialogs:** never use `alert()`, `confirm()`, or `prompt()`. Confirmation uses the in-page modal. |
-| C9 | **Semantic HTML:** `<aside>` + `<nav>` for the sidebar, `<header>` for the top bar, `<main>` for content, one `<section>` per panel section, `<table>` with `<thead>`/`<tbody>`/`<th scope="col">` for tabular data, `<article>` for agent and skill cards, `<dl>` for label/value lists in modals, `<button>` for every clickable control that is not a link. |
+| C9 | **Semantic HTML:** `<aside>` + `<nav>` for the sidebar, `<header>` for the top bar, `<main>` for content, one `<section>` per panel section, `<table>` with `<thead>`/`<tbody>`/`<th scope="col">` for tabular data, `<article>` for metric and skill cards, `<dl>` for label/value lists in modals, `<button>` for every clickable control that is not a link. |
 | C10 | **Viewports:** fully usable at desktop (1280px and wider) and tablet (768px to 1023px) widths with no horizontal page scroll. Narrower than 768px is not required but must not break (same layout as tablet). |
 | C11 | **Icons:** inline SVG, outline style from Heroicons v2 (24×24 viewBox, `fill="none"`, `stroke="currentColor"`, `stroke-width="1.5"`), sized with classes (`size-5` unless stated). Every icon is decorative and carries `aria-hidden="true"`: the text or `aria-label` next to it gives the meaning. Icon names used in this spec are Heroicons names; reproduce each path as closely as you can (an equivalent outline icon with the same meaning is acceptable). The `⋮` action button uses the literal character `⋮` (U+22EE), not an icon. |
 | C12 | **Font:** Tailwind's default `font-sans` stack. No web fonts. |
@@ -75,7 +75,7 @@ Nov 20, 2026). They are part of the contract.
 
 | # | Assumption or decision | Effect in this spec |
 | --- | --- | --- |
-| A1 (Q1, default) | An agent's **owner** is the client company currently renting it. An agent with no active rental is owned by **AgentHub**. | Agent cards show the company name, or "AgentHub" for idle agents. |
+| A1 (Q1, default) | An agent's **owner** is the client company currently renting it. An agent with no active rental is owned by **AgentHub**. | The agents table shows the company name, or "AgentHub" for idle agents. |
 | A2 (Q2, default) | **Users** are people who work at client companies. A user's **plan** is their company's subscription tier: **Starter**, **Pro**, or **Enterprise** (in that order, lowest to highest). Users at the same company always have the same plan. Contracts name the client company, not a person. | Users table "Plan" column; tier locks. |
 | A3 (Q3) | **Discount and coupon losses** = potential revenue (every contract line at full list price) − actual revenue (the prices the lines actually sold at). Every contract line stores a list price and a sold price. | Dashboard card 2; contract breakdown modal. |
 | A4 (Q4, Q14 default) | **Delete** is "safe": it always asks for confirmation in an in-page modal, then removes the entity from the in-memory store and the UI, and every view re-renders from the store. Records that reference a deleted entity as history (contracts, errors) are kept unchanged. Derived numbers (dashboard counts, skill "agents enabled" counts) are recalculated. Deletes last until the page is reloaded. | 13.5. |
@@ -309,45 +309,78 @@ references users, so no other view changes.
 Heading **Agent Management**. Intro: `Every agent on the platform, who runs it, and what it can do.`
 Count: `<n> agents`.
 
-**AGT-1 — Agent card list.** A `<ul class="grid grid-cols-1 gap-4 xl:grid-cols-2">`;
-each `<li>` holds an `<article>` card (surface, border, `rounded-xl p-5
-shadow-sm`), in dataset order (A-01 to A-06). Card header row: on the left, a
-`size-10 rounded-lg` tile with the `cpu-chip` icon (indigo accent colors as in
-DASH-2), the agent name (`text-base font-semibold`), and its purpose under it
-(`text-sm` muted); on the right, the status badge then the `⋮` dropdown. Below
-the header: a `<dl class="mt-4 grid grid-cols-2 gap-4">` with two items, each a
-`<dt>` (`text-xs` muted) above a `<dd>` (`text-sm font-medium`): **Owner** with
-the owner name, and **Last run** with the timestamp. If every agent has
-been deleted, show a single muted card `No agents.`
+**AGT-1 — Agents table.** A data table (12.8) built like the Users table
+(USR-1: same wrapper, header and corner rules), in dataset order (A-01 to
+A-06). Each agent takes two `<tr>`s in the `<tbody>`: the **agent row** and,
+directly under it, its **skills row** (AGT-3). Columns:
+
+| Column | Content | Responsive |
+| --- | --- | --- |
+| Agent | `flex items-center gap-3`: a `size-8 rounded-lg` tile with the `cpu-chip` icon (indigo accent colors as in DASH-2), then the agent name (`font-medium`) with its purpose under it (`text-xs` muted). Under `lg` a third line, `text-xs` muted, shows `<owner> · Last run <timestamp>`. | always |
+| Owner | the owner name | `hidden lg:table-cell` |
+| Status | status badge with dot (AGT-2) | always |
+| Last run | the timestamp, muted | `hidden lg:table-cell` |
+| (actions) | two buttons side by side, right-aligned in `inline-flex items-center justify-end gap-1`: the expand chevron (AGT-3), then the `⋮` dropdown (AGT-4). The header cell is empty with `<span class="sr-only">Actions</span>`; the cell is `w-24 text-right`. | always |
+
+Agent rows have `border-t`, the row hover color and `cursor-pointer`. If every
+agent has been deleted, the body shows one row spanning all columns: `No
+agents.` (12.12).
 
 **AGT-2 — Status badge.** One of `active` (emerald), `inactive` (slate),
 `failing` (red), with dot (4.3). The dataset contains all three. A failing
-card also gets `ring-1 ring-red-200 dark:ring-red-500/30` so failing agents
-stand out in the list.
+agent row's first cell also gets a 3px red bar on its left edge,
+`shadow-[inset_3px_0_0_0_var(--color-red-500)]`, the same in light and dark,
+and so does the first cell of its skills row while it is expanded, so failing
+agents stand out in the list. The badge text still names the status (13.7.5).
 
-**AGT-3 — Collapsible skill list.** At the bottom of each card, separated by
-`mt-4 border-t pt-3`, a full-width toggle `<button>` with
-`aria-expanded="false"` and `aria-controls="skills-<agentId>"`: text
-`Skills (<n>)` on the left, `chevron-down` icon on the right. Below it, the
-panel `<div id="skills-<agentId>">`:
-- **Collapsed (default on load):** `grid grid-rows-[0fr] opacity-0
-  transition-all duration-300 ease-in-out motion-reduce:transition-none`,
-  plus the `inert` attribute so the hidden chips are not read by screen readers.
-- **Expanded:** `grid-rows-[1fr] opacity-100` in place of `grid-rows-[0fr]
-  opacity-0`, and no `inert`.
-- The panel's only child is `<div class="overflow-hidden">` containing a
-  `<ul class="flex flex-wrap gap-2 pt-3">` of skill chips (4.3), one per skill
-  on the agent, in catalog order.
-Clicking the toggle swaps those classes, flips `aria-expanded`, and rotates the
-chevron (`transition-transform duration-300 motion-reduce:transition-none`, `rotate-180` when expanded).
-Clicking again collapses it with the same 300ms transition. Each card toggles
-independently; several can be open. Open/closed state is kept per agent id, so
-re-rendering after a delete keeps other cards as they were. An agent with no
-skills (possible after skill deletes) shows the muted text `No skills enabled.`
-inside the panel.
+**AGT-3 — Expandable skills row.** Each agent's skills are hidden by default
+and open in a full-width row between that agent's row and the next one.
+- **Expand chevron.** The first button in the actions cell:
+  `<button type="button" data-action="toggle-skills" data-id="<agentId>"
+  aria-expanded="false" aria-controls="skills-<agentId>" aria-label="Skills for <Agent name>">`
+  with the same classes as the `⋮` trigger (12.4) and the focus ring (4.1). It
+  holds a `chevron-down` icon (`size-5`, `transition-transform duration-300
+  motion-reduce:transition-none`); expanded, the icon gets `rotate-180` so it
+  points up. It is there so the admin can see the row expands, and it is the
+  keyboard control for it.
+- **Row click.** The agent `<tr>` also carries `data-action="toggle-skills"`
+  and `data-id="<agentId>"`, so a click anywhere on the row does exactly what
+  the chevron does. The document listener (13.1.7) acts on the nearest
+  `[data-action]`, so clicks on the `⋮` button and its menu items run their own
+  actions and never toggle the row. If a menu is open, a click on a row only
+  closes the menu (13.1.3). The `<tr>` gets no `tabindex` or role; keyboard
+  users use the chevron.
+- **Skills row.** `<tr>` with no top border, holding one
+  `<td colspan="5" class="p-0">` whose only child is the panel
+  `<div id="skills-<agentId>">`:
+  - **Collapsed (default on load):** `grid grid-rows-[0fr] opacity-0
+    transition-all duration-300 ease-in-out motion-reduce:transition-none`,
+    plus the `inert` attribute so the hidden chips are not read by screen
+    readers. The row takes no height.
+  - **Expanded:** `grid-rows-[1fr] opacity-100` in place of `grid-rows-[0fr]
+    opacity-0`, and no `inert`. The agent row and the skills row both get
+    `bg-slate-50 dark:bg-slate-800/40` so they read as one block.
+  - The panel's only child is `<div class="overflow-hidden">` holding
+    `<div class="pb-4 pl-15 pr-4 pt-1">` (`pl-15` lines it up with the agent name): a
+    label `Skills (<n>)` (`text-xs font-medium uppercase tracking-wide`
+    muted), then a `<ul class="mt-2 flex flex-wrap gap-2">` of skill chips
+    (4.3), one per skill on the agent, in catalog order. An agent with no
+    skills (possible after skill deletes) shows the muted text `No skills
+    enabled.` instead of the list.
+- **Toggling.** The chevron and the row click both swap the panel classes and
+  `inert`, flip the chevron's `aria-expanded` and rotation, and swap the
+  expanded background. Clicking either again collapses it with the same 300ms
+  transition. Each agent toggles independently; several can be open. Open or
+  closed state is kept per agent id, so re-rendering after a delete keeps the
+  other agents as they were.
+- **Corners.** While the last agent's skills row is collapsed, its agent row's
+  first and last cells get `rounded-bl-xl` and `rounded-br-xl` (12.8); while it
+  is expanded, the skills row's cell gets `rounded-b-xl` instead.
 
-**AGT-4 — Agent action dropdown.** `⋮` opens a menu with **Configure** (icon
-`cog-6-tooth`) and **Delete** (icon `trash`, red text).
+**AGT-4 — Agent action dropdown.** The `⋮` button, right of the chevron,
+opens a menu (12.4) with exactly two items: **Configure** (icon
+`cog-6-tooth`) and **Delete** (icon `trash`, red text `text-red-600
+dark:text-red-400`). There are no other row actions.
 
 **AGT-5 — Configure modal.** "Configure" opens the modal titled `Configure
 <Agent name>` with subtitle `Owner: <owner> · Status: <status>`. Body: a
@@ -366,7 +399,7 @@ button and the backdrop, discarding unsaved edits.
 **AGT-6 — Delete agent.** "Delete" opens the confirm-delete modal: title
 `Delete agent?`, body `<Name> will be removed from Agent Management. Its
 contracts and error history are kept.` Confirming removes the agent from the
-store and re-renders everything: the card disappears, the count drops,
+store and re-renders everything: its agent row and skills row disappear, the count drops,
 Dashboard cards 3 and 4 and their sub-lines recalculate, and every skill's
 "agents enabled" count drops for each skill that agent had. Contracts and
 Error Log rows for that agent stay unchanged.
@@ -424,7 +457,7 @@ listing the names of the agents that have the skill as skill chips, or muted
 `Delete skill?`, body `<Name> will be removed from the catalog and from every
 agent that has it. Past contracts keep their records.` Confirming removes the
 skill from the store and from every agent's skill list, then re-renders: the
-card disappears, the count drops, affected agent cards show one fewer skill
+card disappears, the count drops, affected agents' skills rows show one fewer chip
 (`Skills (<n>)`), and the user detail modal's Skill access list no longer lists
 it. Contract lines that name the skill are unchanged.
 
@@ -534,8 +567,8 @@ behavior) and use it everywhere listed.
 | 12.5 | Modal | Overlay for details and forms | Users, Agents, Skills, Contracts, Errors |
 | 12.6 | Confirm-delete modal | Safe delete confirmation | Users, Agents, Skills |
 | 12.7 | Badge | Status, plan/tier, severity, type, skill chip | All sections |
-| 12.8 | Data table | Tabular list with action column | Users, Contracts, Errors, contract modal |
-| 12.9 | Collapsible skill list | Hide/show an agent's skills with a transition | Agents |
+| 12.8 | Data table | Tabular list with action column | Users, Agents, Contracts, Errors, contract modal |
+| 12.9 | Expandable skills row | Hide/show an agent's skills in a row under it, with a transition | Agents |
 | 12.10 | Dark mode toggle | Switch the whole panel between light and dark | Top bar |
 | 12.11 | Tier lock indicator | Greyed, locked feature naming the required tier | User modal, Skill cards |
 | 12.12 | Empty state | Message when a list is empty | Users, Agents, Skills |
@@ -596,8 +629,9 @@ text-right`. The last row's first and last cells get `rounded-bl-xl` and
 still too wide at 768px its text wraps (`break-words`); tables never scroll
 horizontally. Contents are rendered from the store; empty state per 12.12.
 
-**12.9 Collapsible skill list.** Toggle button + panel, classes and behavior in
-AGT-3 and 13.3. States: collapsed (default) and expanded; the chevron rotates.
+**12.9 Expandable skills row.** Chevron button + clickable agent row + skills
+row with its panel; classes and behavior in AGT-3 and 13.3. States: collapsed
+(default; chevron points down) and expanded (chevron points up).
 
 **12.10 Dark mode toggle.** `<button type="button" id="theme-toggle"
 aria-pressed="false" aria-label="Switch to dark mode">` with `size-9 rounded-lg
@@ -649,12 +683,14 @@ agents.`, `No skills.`
 5. Only one modal is shown at a time. The confirm-delete modal replaces the
    content of the shared root.
 
-### 13.3 Collapsible skill list
+### 13.3 Expandable skills row
 
 1. Collapsed on page load for every agent.
-2. Click toggles between collapsed and expanded with the 300ms row-height and
-   opacity transition from AGT-3; the chevron rotates 180°.
-3. `aria-expanded` always matches the visible state.
+2. A click on the agent row or on its chevron toggles between collapsed and
+   expanded with the 300ms row-height and opacity transition from AGT-3; the
+   chevron rotates 180° (down when collapsed, up when expanded).
+3. Clicks on the `⋮` button or its menu never toggle the row.
+4. `aria-expanded` on the chevron always matches the visible state.
 
 ### 13.4 Dark mode
 
@@ -1105,12 +1141,15 @@ The prototype is complete when every item below is true. Check at 1280px and
 
 **Agent Management**
 
-21. Six agent cards show name, owner, status badge (`active`, `inactive` and
-    `failing` all appear) and a `Skills (<n>)` toggle.
+21. The agents table shows six rows with name, owner, status badge
+    (`active`, `inactive` and `failing` all appear), last run, and at the far
+    right a chevron button then a `⋮` button; failing rows have a red left bar.
 22. On load every skill list is collapsed (skills not visible).
-23. Clicking a toggle expands that agent's skill list with a visible ~300ms
-    height and fade transition and a rotating chevron; clicking again
-    collapses it the same way; `aria-expanded` matches.
+23. Clicking an agent row, or its chevron, opens a full-width skills row
+    under it with a visible ~300ms height and fade transition, and the
+    chevron flips to point up; clicking either again collapses it the same
+    way; `aria-expanded` matches. Clicking `⋮` or a menu item does not
+    expand or collapse the row.
 24. Every agent's `⋮` dropdown offers Configure and Delete.
 25. Configure opens a modal with the agent's system prompt in an editable
     `<textarea>`; after editing and clicking Save prompt, reopening Configure
@@ -1122,7 +1161,7 @@ The prototype is complete when every item below is true. Check at 1280px and
     cards, each with name, short description, minimum tier, and an "agents
     enabled" count.
 27. The counts are 4, 3, 3, 3, 2, 2 for S-01 to S-06 and equal the number of
-    agent cards listing each skill.
+    agents whose skills rows list each skill.
 28. Every skill's `⋮` dropdown offers View detail and Delete; View detail opens
     a modal with the long description, tier info and the agents that have it,
     and with no price and no contract information.
@@ -1173,7 +1212,7 @@ The prototype is complete when every item below is true. Check at 1280px and
     the Dashboard show 2 active agents and lowers Email Drafting, Scheduling,
     Document Summarization and Data Extraction by one; Atlas still appears in
     Contracts (C-1001) and the Error Log (E-5004).
-43. Deleting a skill removes it from every agent card's skill list and from
+43. Deleting a skill removes it from every agent's skills row and from
     the user modal's Skill access list; contract breakdowns still show it.
 
 **Dark mode**
@@ -1206,8 +1245,8 @@ The prototype is complete when every item below is true. Check at 1280px and
 51. Every `<svg>` has `aria-hidden="true"`; every `⋮`, × and the theme toggle
     has an `aria-label`; the page has exactly one `<h1>`; each `<section>` is
     labelled by its `<h2>`.
-52. A collapsed skill list is `inert`; an expanded one is not.
-53. With the OS set to reduce motion, the skill list and chevron change
+52. A collapsed skills row panel is `inert`; an expanded one is not.
+53. With the OS set to reduce motion, the skills row and chevron change
     instantly.
 54. No text uses `opacity-*`; resolved errors and locked skills are greyed
     with muted text colors instead.

@@ -9,32 +9,27 @@ before you stop (routine in [setup.md](setup.md)); do not append to it. On a
 branch it describes that branch, so it is already true when the branch merges.
 
 - **State:** `SPECS.md` is on `main`: first version in PR #4 (commit
-  `4811646`, alone and before any HTML), accessibility rules added in PR #7
-  (13.7, acceptance criteria 49–56). The DoD has accessibility items W1–W9
-  (PR #5). All open questions are settled: Q1, Q2, Q14 and Q15 took their
-  defaults ([decisions/2026-11-20-defaults-accepted.md](decisions/2026-11-20-defaults-accepted.md)).
-  Phases 1–3 are done. There is no HTML and no automated test.
-- **Last sessions (2026-11-20):** wrote `SPECS.md` with the full dataset in
-  section 14, so `context/dataset.md` was never created. A script checked the
-  data: contract totals, list price = monthly price × term, skill counts
-  4/3/3/3/2/2, tier rules, and dashboard values $49,740.00 / $5,160.00 / 3 / 2.
-  A fresh agent then cold-read the spec. A second session added the
-  accessibility rules: skip link, `sr-only` `<h1>`, `aria-labelledby`,
-  `aria-hidden` icons, `inert` collapsed lists, `motion-reduce`, and muted text
-  instead of `opacity-50` for contrast. This branch records the defaults and
-  ticks the checklists.
+  `4811646`, alone and before any HTML), accessibility rules in PR #7. This
+  branch changes Agent Management from cards to a table: clicking a row, or
+  the chevron at its far right, opens a full-width skills row under it; the
+  `⋮` menu (Configure, Delete) is the only other row action
+  ([decisions/2026-11-20-agents-as-table.md](decisions/2026-11-20-agents-as-table.md)).
+  There is no HTML and no automated test.
+- **Last sessions (2026-11-20):** mae tried a Google Stitch proposal and
+  disliked its agent cards. This session summarized the agent spec, agreed
+  the table and its row buttons with mae, and rewrote AGT-1 to AGT-4, 12.9,
+  13.3 and acceptance criteria 21, 23, 27, 43, 52 and 53 in one `SPECS.md`
+  commit.
 - **In progress:** nothing half-finished.
-- **Next action:** Phase 4, the Google Stitch proposal from `SPECS.md`
-  ([deliverables/2-stitch-proposal.md](deliverables/2-stitch-proposal.md)).
-  It needs mae or an agent with browser access.
+- **Next action:** finish Phase 4 (save the Stitch screenshots and note under
+  `context/design/`, list its divergences), then Phase 5, the build.
 - **Waiting on mae:** merging this pull request.
-- **Tried and ruled out:** a separate `context/dataset.md`, because it would
-  have needed a deletion PR later. Keeping `opacity-50` on dimmed rows: axe-core
-  counts opacity in contrast, and half-opacity slate text fails 4.5:1.
+- **Tried and ruled out:** a card grid for agents (mae prefers a table).
+  Sortable columns, Pause/Activate and "View errors" row actions (mae chose
+  none of the optional extras). A ring on a failing `<tr>` (rings do not draw
+  on table rows; an inset left bar on the first cell is used instead).
 - **Last verified:** `python3 context/check.py` printed "0 failed" on this
-  branch after merging `main` (2026-11-20). The muted-text contrast figures
-  were judged from Tailwind's slate scale, not measured; W9's axe scan at
-  build time will measure them.
+  branch (2026-11-20).
 
 ## Plan
 

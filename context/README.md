@@ -53,3 +53,4 @@ Then run `python3 context/check.py` from the repo root and read what it prints.
 | 2026-11-19 | mae: no more direct commits to main | decisions/2026-11-19-repo-workflow.md rewritten, setup.md |
 | 2026-11-20 | mae's memory bank generator v5.4 (prompt and checker, uploaded) | Assessed against context/; five ideas adopted, see decisions/2026-11-20-keep-context-adopt-memory-bank-ideas.md; the upload is not kept in the repo |
 | 2026-11-20 | mae: import the accessibility rules from past builds (TrackFlow-Company-Overhaul, tailwind-dashboard, html-tailwindcss-project) | decisions/2026-11-20-accessibility-from-past-builds.md; DoD items W1–W9 added; checklists, check.py updated |
+| 2026-11-20 | mae: agents as a table, not cards; row click and a chevron expand skills; `⋮` keeps Configure and Delete | decisions/2026-11-20-agents-as-table.md; SPECS.md section 8, 12.9, 13.3 and criteria 21, 23, 27, 43, 52, 53 |

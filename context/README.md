@@ -32,7 +32,7 @@ the dataset, then write `SPECS.md`.
 | [deliverables/2-stitch-proposal.md](deliverables/2-stitch-proposal.md) | Stitch proposal steps and checklist |
 | [deliverables/3-prototype.md](deliverables/3-prototype.md) | Build order and full completion checklist |
 | [deliverables/4-final-review.md](deliverables/4-final-review.md) | Git, static, and manual test script mirroring the evaluation |
-| [decisions/](decisions/) | Decisions made by mae: repo workflow, no fork, answers to Q3–Q13 |
+| [decisions/](decisions/) | Decisions made by mae: branch + PR workflow, no fork, answers to Q3–Q13 |
 | [_templates/context-note.md](_templates/context-note.md) | Template for a new note |
 
 ## Ingestion log
@@ -44,3 +44,4 @@ the dataset, then write `SPECS.md`.
 | 2026-11-19 | mae: forking not required | decisions/2026-11-19-no-template-fork.md |
 | 2026-11-19 | Synthesis pass | Raw screenshots and first-pass notes replaced by the files above (originals are in git history before this commit) |
 | 2026-11-19 | mae's answers to Q3–Q13 | decisions/2026-11-19-open-question-answers.md; DoD items D1.5, D2.5, D4.7, D5.7, D6.7, D6.8, X8, X9 added, T1–T3, D5.3 changed; checklists, domain, setup updated |
+| 2026-11-19 | mae: no more direct commits to main | decisions/2026-11-19-repo-workflow.md rewritten, setup.md |

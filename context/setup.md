@@ -16,7 +16,10 @@ What a future agent needs to know before touching this repo.
 - GitHub: `Sun-flow/AgentHub-Dashboard`. Default branch: `main`.
 - Created fresh, not forked from `4GeeksAcademy/html-hello` (allowed, see
   [decisions/2026-11-19-no-template-fork.md](decisions/2026-11-19-no-template-fork.md)).
-- `context/` holds planning material and is committed straight to `main`.
+- **Never commit directly to `main`.** Work on a branch and open a pull
+  request for mae to review, including for `context/` updates
+  ([decisions/2026-11-19-repo-workflow.md](decisions/2026-11-19-repo-workflow.md)).
+- `context/` holds planning material.
 - As of 2026-11-19 the repo holds only `context/`. No `SPECS.md`, no HTML.
 - The prototype will be a single `index.html` at the repo root (Q8).
 
@@ -74,6 +77,7 @@ URL when writing `SPECS.md`.
    [brief.md](brief.md) only if they come from the client's brief).
 2. If it adds a requirement, add a DoD item and update the affected checklist.
 3. If it raises a question, add it to [open-questions.md](open-questions.md).
-4. Update [README.md](README.md) (index and ingestion log) in the same commit.
+4. Update [README.md](README.md) (index and ingestion log) in the same commit,
+   on a branch, and open a PR.
 5. Raw inputs may be kept in `_raw/` while being worked on; remove them once
    synthesized (git history keeps them).

@@ -183,9 +183,10 @@ def check_branches():
         fails.append("Local main has commits that are not on origin/main. Nothing is committed straight to main: "
                      "move them to a branch (`git switch -c <branch>`) and open a pull request.")
     unmerged = git("for-each-ref", "--no-merged", "origin/main",
-                   "--format=%(refname:short)|%(committerdate:short)|%(subject)", "refs/remotes/origin") or ""
+                   "--format=%(refname)|%(committerdate:short)|%(subject)", "refs/remotes/origin") or ""
     for line in unmerged.splitlines():
-        name, date, subject = line.split("|", 2)
+        ref, date, subject = line.split("|", 2)
+        name = ref.removeprefix("refs/remotes/")
         if name in ("origin/HEAD", f"origin/{here}"):
             continue
         infos.append(f"Unmerged branch {name} (last commit {date}: {subject}). If it covers your task, continue "

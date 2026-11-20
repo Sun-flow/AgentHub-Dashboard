@@ -8,7 +8,7 @@ panel without asking a single question.
 
 - [ ] Read [../brief.md](../brief.md) end to end.
 - [ ] Every open question in [../open-questions.md](../open-questions.md) is
-      answered by mae or uses its proposed default (only Q1 and Q2 remain).
+      answered by mae or uses its proposed default.
       Record each choice in the spec.
 - [x] Tailwind CDN version chosen: v4 browser CDN (Q11).
 - [x] File structure chosen: single `index.html` (Q8).
@@ -72,7 +72,7 @@ panel without asking a single question.
 - [ ] P1 file is at the repo root, named exactly `SPECS.md`
 - [ ] P2 committed alone (the commit touches only `SPECS.md`)
 - [ ] P3 no `.html` file exists anywhere in the repo history before this commit
-- [ ] Opened as its own PR and merged to `main` before any HTML PR (P7)
+- [ ] Opened as its own PR, holding only that one commit, and merged to `main` before any HTML PR (P7)
 
 Later edits to `SPECS.md` are allowed in later commits, but the first version
 must land before any HTML.

@@ -24,6 +24,7 @@ fix the spec first (new commit), then build.
 - [ ] T5 vanilla JS only, no frameworks, jQuery, or build tools
 - [ ] T6 no network calls for data
 - [ ] T7 semantic tags used correctly
+- [ ] T8 usable at desktop (~1280px) and tablet (~768px) widths
 
 **Shell**
 - [ ] L1 sidebar links to all six sections

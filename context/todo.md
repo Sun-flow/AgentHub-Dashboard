@@ -1,7 +1,34 @@
 # To-do
 
-The ordered plan of work. Check items off as they are done and note the commit
-or decision that closed them. Work top to bottom: each phase depends on the one
+Where the work stands, then the ordered plan.
+
+## Now (updated 2026-11-20)
+
+This block is the only place the project's status is written. Rewrite it
+before you stop (routine in [setup.md](setup.md)); do not append to it. On a
+branch it describes that branch, so it is already true when the branch merges.
+
+- **State:** planning is complete and no deliverable has been started. The
+  repo holds `context/`, `AGENTS.md`, and `CLAUDE.md`. There is no `SPECS.md`,
+  no HTML, and no dataset draft.
+- **Last session (2026-11-20):** added the root pointer files, this block, the
+  session routine in setup.md, and `context/check.py`. No project work.
+- **In progress:** nothing. There is no half-finished work to pick up.
+- **Next action:** Phase 2 below. Draft the dataset in a new
+  `context/dataset.md` (add its row to the README index), following
+  [domain.md](domain.md), and push it so it survives the session. It moves
+  into `SPECS.md` in Phase 3.
+- **Waiting on mae:** Q1, Q2, Q14, Q15 in [open-questions.md](open-questions.md).
+  None of them blocks: use the proposed defaults and say so in `SPECS.md`.
+- **Tried and ruled out:** nothing yet.
+- **Last verified:** `python3 context/check.py` printed "0 failed, 0 to look
+  at", and failed as it should in a throwaway clone with a commit on local
+  `main` (2026-11-20).
+
+## Plan
+
+Check items off as they are done and note the commit, pull request, or
+decision that closed them. Work top to bottom: each phase depends on the one
 before it.
 
 ## Phase 0 — Organize (done)
@@ -15,7 +42,7 @@ before it.
 - [x] mae answered Q3–Q13 (2026-11-19), recorded in `decisions/` and folded into the DoD
 - [x] Tailwind v4 CDN (Q11) and single `index.html` (Q8) chosen
 - [ ] Q1 (agent owner) and Q2 (users vs clients, plan = tier) answered, or defaults accepted
-- [ ] mae confirms the two interpretations in [decisions/2026-11-19-open-question-answers.md](decisions/2026-11-19-open-question-answers.md)
+- [ ] Q14 and Q15 (the two interpretations recorded with mae's answers) confirmed, or defaults accepted
 
 ## Phase 2 — Plan the hardcoded dataset
 
@@ -30,7 +57,8 @@ before it.
 
 - [ ] Write `SPECS.md` at the repo root following [deliverables/1-specs.md](deliverables/1-specs.md)
 - [ ] Cold-read test with a fresh agent
-- [ ] Commit `SPECS.md` **alone**, before any HTML file exists, and push
+- [ ] Commit `SPECS.md` **alone**, before any HTML file exists, in a pull request that holds only that commit
+- [ ] After that pull request is merged, delete `context/dataset.md` in a separate pull request (the spec is then the only home for the data)
 
 ## Phase 4 — Stitch visual proposal
 

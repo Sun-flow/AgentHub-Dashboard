@@ -15,6 +15,8 @@ git show --stat <specs-commit>
 
 - [ ] SPECS.md commit is older than the first HTML commit (P3)
 - [ ] SPECS.md commit contains only SPECS.md (P2)
+- [ ] The repo is `Sun-flow/AgentHub-Dashboard` (P6)
+- [ ] `python3 context/check.py` reports no failures
 
 ## 2. Spec content
 

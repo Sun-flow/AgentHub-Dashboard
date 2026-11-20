@@ -12,7 +12,7 @@ WARN lines need a look but do not fail. What it checks:
    root AGENTS.md and CLAUDE.md, points at a file or folder that exists.
 3. Every file in context/ is listed in context/README.md (directly, or
    through its folder).
-4. Every DoD ID (P1, D2.4, X8 ...) mentioned anywhere is defined in
+4. Every DoD ID (P1, D2.4, X8, W3 ...) mentioned anywhere is defined in
    definition-of-done.md, is defined once, and is ticked off by some
    checklist in deliverables/.
 5. Every question number (Q1 ...) mentioned anywhere has a row in
@@ -38,8 +38,8 @@ CTX = ROOT / "context"
 LINK = re.compile(r"\[[^\]]*\]\(([^)\s]+)\)")
 IMPORT = re.compile(r"^@(\S+)$")
 FENCE = re.compile(r"^\s*(```|~~~)")
-DOD_ID = re.compile(r"\b(?:[PSTLX]\d+|D\d\.\d+)\b")
-DOD_ROW = re.compile(r"^\|\s*([PSTLX]\d+|D\d\.\d+)\s*\|")
+DOD_ID = re.compile(r"\b(?:[PSTLXW]\d+|D\d\.\d+)\b")
+DOD_ROW = re.compile(r"^\|\s*([PSTLXW]\d+|D\d\.\d+)\s*\|")
 Q_ID = re.compile(r"\bQ\d+\b")
 Q_ROW = re.compile(r"^\|\s*(Q\d+)\s*\|")
 CHECKBOX = re.compile(r"^\s*- \[[ xX]\]")

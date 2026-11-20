@@ -8,25 +8,30 @@ This block is the only place the project's status is written. Rewrite it
 before you stop (routine in [setup.md](setup.md)); do not append to it. On a
 branch it describes that branch, so it is already true when the branch merges.
 
-- **State:** planning is complete and no deliverable has been started. The
-  repo holds `context/`, `AGENTS.md`, `CLAUDE.md`, and the testing kit
-  (`.claude/`, `.github/`, `docs/testing/`; see Testing in
-  [setup.md](setup.md)). There is no `SPECS.md`, no HTML, no dataset draft,
-  and no automated test.
-- **Last session (2026-11-20):** installed the testing kit and its GitHub
-  checks. No project work.
-- **In progress:** nothing. There is no half-finished work to pick up.
-- **Next action:** Phase 2 below. Draft the dataset in a new
-  `context/dataset.md` (add its row to the README index), following
-  [domain.md](domain.md), and push it so it survives the session. It moves
-  into `SPECS.md` in Phase 3.
-- **Waiting on mae:** Q1, Q2, Q14, Q15 in [open-questions.md](open-questions.md).
-  None of them blocks: use the proposed defaults and say so in `SPECS.md`.
-- **Tried and ruled out:** nothing yet.
+- **State:** planning is complete. `SPECS.md` is written and waits in its own
+  pull request (#4, branch `claude/project-thread-kng3jc`, one commit). There
+  is no HTML and no automated test. This branch adds the accessibility items
+  W1–W9 to the DoD and does not touch `SPECS.md`.
+- **Last session (2026-11-20):** at mae's request, imported the accessibility
+  rules from mae's past builds (TrackFlow-Company-Overhaul, tailwind-dashboard,
+  html-tailwindcss-project) as DoD section W; see
+  [decisions/2026-11-20-accessibility-from-past-builds.md](decisions/2026-11-20-accessibility-from-past-builds.md).
+  `check.py` now knows the W IDs.
+- **In progress:** nothing half-finished.
+- **Next action:** once PR #4 is merged, cover the W items `SPECS.md` does
+  not yet state, in a new commit to `SPECS.md` on its own branch: a skip link
+  (W7), `aria-hidden="true"` on the Heroicons SVGs (W4),
+  `motion-reduce:transition-none` on the skill-list, chevron and menu
+  transitions (W6), `aria-labelledby` on each section (W7), and a check that
+  the palette's muted text and badges reach AA contrast in both themes (W5).
+  The pending spec already covers focus rings, `aria-*` states, Escape and
+  focus return (W2, W3, W8). Do not add these to PR #4: it must stay one commit.
+- **Waiting on mae:** merging PR #4 and this pull request; Q1, Q2, Q14, Q15 in
+  [open-questions.md](open-questions.md) (none blocks).
+- **Tried and ruled out:** prefix A for the new items, because `SPECS.md`
+  already uses A1–A14 for its assumptions.
 - **Last verified:** `python3 context/check.py` printed "0 failed, 0 to look
-  at", and the kit's own check (`install.py --check . --run` from a clone of
-  the kit) found the hooks wired up and the test command exiting 0 with no
-  tests (2026-11-20).
+  at" on this branch (2026-11-20).
 
 ## Plan
 
@@ -61,6 +66,7 @@ before it.
 - [ ] Write `SPECS.md` at the repo root following [deliverables/1-specs.md](deliverables/1-specs.md)
 - [ ] Cold-read test with a fresh agent
 - [ ] Commit `SPECS.md` **alone**, before any HTML file exists, in a pull request that holds only that commit
+- [ ] After that pull request is merged, add the accessibility gaps listed in "Now" (W4–W7) to `SPECS.md` in a new commit of its own
 - [ ] After that pull request is merged, delete `context/dataset.md` in a separate pull request (the spec is then the only home for the data)
 
 ## Phase 4 — Stitch visual proposal

@@ -13,6 +13,7 @@ fix the spec first (new commit), then build.
    section renders from it so deletes propagate. (X7, X8)
 4. Sections in order: Dashboard, Users, Agents, Skills, Contracts, Error Log.
 5. Tablet pass and visual polish. (T8, T9)
+6. Accessibility pass: keyboard walk, then the axe-core scan, in both themes. (W1–W9)
 
 ## Completion checklist
 
@@ -92,3 +93,14 @@ fix the spec first (new commit), then build.
 - [ ] X7 data consistent everywhere
 - [ ] X8 Delete confirms in-page, removes from data + UI, dependent numbers update
 - [ ] X9 USD and agreed date formats
+
+**Accessibility** ([decision](../decisions/2026-11-20-accessibility-from-past-builds.md))
+- [ ] W1 everything reachable and usable by keyboard, in visual order, no positive `tabindex`
+- [ ] W2 visible focus indicator everywhere, both themes; no bare `outline-none`
+- [ ] W3 `aria-label` on text-less controls, textarea labelled, state ARIA matches the screen
+- [ ] W4 decorative icons `aria-hidden`; badges carry text, not color alone
+- [ ] W5 AA contrast in light and dark (4.5:1 text, 3:1 focus rings and badge outlines)
+- [ ] W6 `motion-reduce:transition-none` on everything that animates
+- [ ] W7 skip link first; one `<h1>`; labelled nav and sections
+- [ ] W8 Escape closes menus and modals; focus moves into modals and back out
+- [ ] W9 axe-core clean on every section, with a menu and a modal open, both themes

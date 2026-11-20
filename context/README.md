@@ -26,7 +26,7 @@ Then run `python3 context/check.py` from the repo root and read what it prints.
 | File | What it is |
 | --- | --- |
 | [brief.md](brief.md) | Complete transcription of the brief (sections B0–B5) |
-| [definition-of-done.md](definition-of-done.md) | DoD items P, S, T, L, D1–D6, X with source and check |
+| [definition-of-done.md](definition-of-done.md) | DoD items P, S, T, L, D1–D6, X, W (accessibility) with source and check |
 | [todo.md](todo.md) | "Now" block (state, handoff, next action), then Phases 0–6 with checkboxes |
 | [setup.md](setup.md) | Session routine, repo, rules, which source wins, where things go, tools, dark mode, testing, gotchas |
 | [domain.md](domain.md) | Entities, relationships, and consistency rules for the hardcoded data |
@@ -52,3 +52,4 @@ Then run `python3 context/check.py` from the repo root and read what it prints.
 | 2026-11-19 | mae's answers to Q3–Q13 | decisions/2026-11-19-open-question-answers.md; DoD items D1.5, D2.5, D4.7, D5.7, D6.7, D6.8, X8, X9 added, T1–T3, D5.3 changed; checklists, domain, setup updated |
 | 2026-11-19 | mae: no more direct commits to main | decisions/2026-11-19-repo-workflow.md rewritten, setup.md |
 | 2026-11-20 | mae's memory bank generator v5.4 (prompt and checker, uploaded) | Assessed against context/; five ideas adopted, see decisions/2026-11-20-keep-context-adopt-memory-bank-ideas.md; the upload is not kept in the repo |
+| 2026-11-20 | mae: import the accessibility rules from past builds (TrackFlow-Company-Overhaul, tailwind-dashboard, html-tailwindcss-project) | decisions/2026-11-20-accessibility-from-past-builds.md; DoD items W1–W9 added; checklists, check.py updated |

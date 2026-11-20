@@ -47,6 +47,10 @@ panel without asking a single question.
    outside click and only one open at a time), how modals open/close (button,
    backdrop, optionally Escape), how dark mode toggles and persists, how the
    skill list animates.
+6a. **Accessibility** (W1–W9): skip link, focus ring classes, every
+   `aria-*` attribute per component, `aria-hidden` on decorative icons,
+   `motion-reduce:` on transitions, Escape and focus movement for menus and
+   modals, and the contrast pairs used in both themes.
 7. **Hardcoded dataset** (S8, X7): the complete data, written out as tables:
    every user, agent (with owner, status, skills, system prompt), skill (with
    description, price, agents-enabled count), contract (with itemized skills,

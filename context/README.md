@@ -4,8 +4,9 @@ Planning material for the AgentHub admin panel prototype: an HTML, Tailwind,
 and vanilla JS admin panel for a platform where companies rent AI agents. This
 folder is information and plans only. Nothing here is app code.
 
-**Status (2026-11-19):** brief ingested and synthesized. Next step is Phase 1
-in [todo.md](todo.md): settle the open questions, then write `SPECS.md`.
+**Status (2026-11-19):** brief synthesized; mae answered Q3–Q13. Q1 and Q2
+still use proposed defaults. Next step: Phase 2 in [todo.md](todo.md), plan
+the dataset, then write `SPECS.md`.
 
 ## Start here
 
@@ -25,13 +26,13 @@ in [todo.md](todo.md): settle the open questions, then write `SPECS.md`.
 | [setup.md](setup.md) | Reading order, repo, rules, tools, dark mode, testing, how to add material |
 | [domain.md](domain.md) | Entities, relationships, and consistency rules for the hardcoded data |
 | [references.md](references.md) | html-hello template, Google Stitch, Tailwind |
-| [open-questions.md](open-questions.md) | Q1–Q13 with proposed defaults |
+| [open-questions.md](open-questions.md) | Q1–Q2 open with defaults; Q3–Q13 answered |
 | [deliverables/README.md](deliverables/README.md) | The three deliverables and their order |
 | [deliverables/1-specs.md](deliverables/1-specs.md) | SPECS.md outline and completion checklist |
 | [deliverables/2-stitch-proposal.md](deliverables/2-stitch-proposal.md) | Stitch proposal steps and checklist |
 | [deliverables/3-prototype.md](deliverables/3-prototype.md) | Build order and full completion checklist |
 | [deliverables/4-final-review.md](deliverables/4-final-review.md) | Git, static, and manual test script mirroring the evaluation |
-| [decisions/](decisions/) | Decisions made by mae, one file each |
+| [decisions/](decisions/) | Decisions made by mae: repo workflow, no fork, answers to Q3–Q13 |
 | [_templates/context-note.md](_templates/context-note.md) | Template for a new note |
 
 ## Ingestion log
@@ -42,3 +43,4 @@ in [todo.md](todo.md): settle the open questions, then write `SPECS.md`.
 | 2026-11-19 | 4Geeks html-hello README (link) | references.md, setup.md, Q11 |
 | 2026-11-19 | mae: forking not required | decisions/2026-11-19-no-template-fork.md |
 | 2026-11-19 | Synthesis pass | Raw screenshots and first-pass notes replaced by the files above (originals are in git history before this commit) |
+| 2026-11-19 | mae's answers to Q3–Q13 | decisions/2026-11-19-open-question-answers.md; DoD items D1.5, D2.5, D4.7, D5.7, D6.7, D6.8, X8, X9 added, T1–T3, D5.3 changed; checklists, domain, setup updated |

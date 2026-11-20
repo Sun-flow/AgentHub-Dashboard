@@ -1,26 +1,31 @@
 # Open questions
 
-Gaps in the brief. Each has a **proposed default** that stays within the
-brief, so work is never blocked: if mae hasn't answered by the time a question
-matters, use the default and say so in `SPECS.md`. When mae answers, record it
-in `decisions/` and update this file.
+Gaps in the brief. Each open one has a **proposed default** that stays within
+the brief, so work is never blocked: if mae hasn't answered by the time it
+matters, use the default and say so in `SPECS.md`.
+
+## Open
 
 | # | Question | Proposed default | Affects |
 | --- | --- | --- | --- |
 | Q1 | Who is an agent's "owner"? | The client company that rents it (for idle agents, "AgentHub"). | Agents, Contracts |
-| Q2 | Are users people at client companies, and is "plan" a subscription tier? | Yes: each user belongs to a client company; plan is the company's tier (e.g. Starter / Pro / Enterprise). | Users, data |
-| Q3 | Where do "discount and coupon losses" come from? | Contracts may carry a discount line; the dashboard figure is their sum for the month. Shown in the contract breakdown modal. | Dashboard, Contracts |
-| Q4 | What do "Delete" and "Mark as resolved" do? | Delete removes the row from the page (in memory, no confirmation dialog). Mark as resolved changes the entry's badge to "Resolved" and dims it. Not persisted. Form submission is not evaluated, so keep it simple. | Users, Agents, Skills, Error Log |
-| Q5 | What does the Skill "View detail" modal show? | Name, full description, price, the list of agents that have it enabled, and the contracts that include it. | Skills |
-| Q6 | Which actions does the Contracts dropdown have besides "View detail"? | "View detail" and "Cancel contract" (behaves like Delete for active contracts). | Contracts |
-| Q7 | Which error types/severities and colors? | Severity: Critical (red), Error (orange), Warning (amber), Info (blue). Types: Timeout, API failure, Rate limit, Auth, Invalid output. | Error Log |
-| Q8 | One `index.html` or one file per section? | Single `index.html` with JS section switching. Simpler dark-mode persistence, one place for shared data. | Structure |
-| Q9 | Currency and date formats? | USD (`$12,400.00`), dates `Nov 19, 2026`, timestamps `2026-11-19 14:32 UTC`. | All |
-| Q10 | Does `context/` in the repo conflict with the commit-order rule? | No. It holds only markdown. Never put an `.html` file in it before `SPECS.md` is committed. | Process |
-| Q11 | Tailwind v3 or v4 CDN? | v3 Play CDN with `darkMode: 'class'` in JS config. Avoids any `<style>` block, so "no custom CSS" holds under the strictest reading. | Setup, dark mode |
-| Q13 | Where does the brief's "Follow these instructions" link go? | Ignore unless mae provides it; the rest of the brief is complete without it. | Setup |
+| Q2 | Are users people at client companies, and is "plan" a subscription tier? | Yes: each user belongs to a client company; plan is the company's tier: Starter / Pro / Enterprise. Tier locks (see Q5 answer) depend on this. | Users, Skills, data |
 
-## Resolved
+## Answered
 
-- **Q12 — Must the repo be a fork of html-hello?** No. See
-  [decisions/2026-11-19-no-template-fork.md](decisions/2026-11-19-no-template-fork.md).
+All answered by mae on 2026-11-19. Full wording and the interpretations made
+are in [decisions/2026-11-19-open-question-answers.md](decisions/2026-11-19-open-question-answers.md).
+
+| # | Question | Answer |
+| --- | --- | --- |
+| Q3 | Discount and coupon losses | Potential revenue at full price minus revenue at prices actually sold. Contract lines carry list and sold price. |
+| Q4 | Delete / Mark as resolved | Delete safely removes the entity from the in-memory data and the UI, with dependent views re-rendered. Resolved errors are darkened in place. |
+| Q5 | Skill detail modal | No price or contracts. New rule: features above a user's tier are greyed out with a lock icon naming the tier. |
+| Q6 | Contracts dropdown | "View detail" only. |
+| Q7 | Error severities/types | Critical (red), Error (orange), Warning (amber), Info (blue); types Timeout, API failure, Rate limit, Auth, Invalid output. |
+| Q8 | File structure | Single `index.html`. |
+| Q9 | Formats | USD `$12,400.00`; dates `Nov 19, 2026`; timestamps `2026-11-19 14:32 UTC`. |
+| Q10 | `context/` vs commit order | No conflict, as long as no `.html` lands before `SPECS.md`. |
+| Q11 | Tailwind version | v4 browser CDN, one `text/tailwindcss` style block for the dark variant only. |
+| Q12 | Fork the template? | Not required. See [decisions/2026-11-19-no-template-fork.md](decisions/2026-11-19-no-template-fork.md). |
+| Q13 | "Follow these instructions" link | Ignore. |

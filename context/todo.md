@@ -12,16 +12,18 @@ before it.
 
 ## Phase 1 — Settle open questions
 
-- [ ] mae answers or accepts the proposed defaults in [open-questions.md](open-questions.md)
-- [ ] Record each answer in `decisions/` and update affected docs
-- [ ] Choose Tailwind CDN version (Q11) and file structure (Q8)
+- [x] mae answered Q3–Q13 (2026-11-19), recorded in `decisions/` and folded into the DoD
+- [x] Tailwind v4 CDN (Q11) and single `index.html` (Q8) chosen
+- [ ] Q1 (agent owner) and Q2 (users vs clients, plan = tier) answered, or defaults accepted
+- [ ] mae confirms the two interpretations in [decisions/2026-11-19-open-question-answers.md](decisions/2026-11-19-open-question-answers.md)
 
 ## Phase 2 — Plan the hardcoded dataset
 
 - [ ] Draft the canonical dataset following the rules in [domain.md](domain.md):
       ≥5 users, ≥4 agents (covering active, inactive, failing), ≥4 skills,
       ≥4 contracts (active and past), ≥6 errors (several types/severities)
-- [ ] Derive dashboard values from it (active agents, failing agents, monthly revenue, discount losses)
+- [ ] Give each skill a list price and minimum tier; give each contract line a list and sold price
+- [ ] Derive dashboard values from it (active agents, failing agents, monthly revenue, discount losses = full price − sold)
 - [ ] Cross-check consistency (agent names, skill counts, contract totals)
 
 ## Phase 3 — Write and commit SPECS.md

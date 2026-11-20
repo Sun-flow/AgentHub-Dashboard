@@ -25,6 +25,7 @@ git show --stat <specs-commit>
 ```bash
 grep -rn 'style=' --include='*.html' .        # expect nothing (T4)
 find . -name '*.css' -not -path './.git/*'     # expect nothing (T3)
+grep -n '<style' index.html                    # expect exactly one: the text/tailwindcss dark variant (T3)
 grep -rnE 'react|vue|jquery' --include='*.html' -i .   # expect nothing (T5)
 ```
 
@@ -42,7 +43,12 @@ grep -rnE 'react|vue|jquery' --include='*.html' -i .   # expect nothing (T5)
    the button; reopen; close by clicking the backdrop.
 6. Agents: skill lists start collapsed; expand shows a visible transition;
    collapse again. Configure opens a modal with an editable textarea; close both ways.
-7. Contracts modal shows itemized skill prices that add up to the total.
+7. Contracts modal shows each skill's list and sold price; sold prices add up
+   to the total. Dashboard discount losses equal the list − sold difference.
+8a. Delete a user, an agent, and a skill: each asks for confirmation, then
+   disappears; dashboard and skill counts update.
+8b. Mark an error as resolved: the row darkens and stays.
+8c. Open a Starter-plan user: higher-tier skills are greyed with a lock and tier name.
 8. Check the same agent names appear in Agents, Contracts, and Error Log.
 9. Repeat steps 1, 4, 5, 6 at tablet width; nothing overflows or becomes unusable.
 

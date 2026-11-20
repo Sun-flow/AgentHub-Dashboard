@@ -16,12 +16,12 @@ contracts, revenue, and agent failures.
 
 | Entity | Fields | Notes |
 | --- | --- | --- |
-| User | name, email, plan, status _(brief)_; full record for the detail modal (proposed: id, company, role, signup date, last active) | "Plan" and the link to clients are open (Q2) |
+| User | name, email, plan, status _(brief)_; full record for the detail modal (proposed: id, company, role, signup date, last active) | Plan = subscription tier Starter / Pro / Enterprise (Q2 default) |
 | Client | company name _(brief: appears on contracts)_ | Possibly the same as a user's company (Q2) |
 | Agent | name, owner, status `active` / `inactive` / `failing`, skills, system prompt _(brief)_ | "Owner" meaning is open (Q1) |
-| Skill | name, short description, number of agents with it enabled _(brief)_; price per contract _(brief, via contracts)_ | Detail modal contents open (Q5) |
-| Contract | client, agent, contracted skills, start date, end date, total amount paid, itemized skill prices _(brief)_; active or past _(brief)_ | Discounts possibly here (Q3) |
-| Error | timestamp, agent, error type, short description, full trace _(brief)_; severity, resolved flag (proposed) | Types/severities open (Q7) |
+| Skill | name, short description, number of agents with it enabled _(brief)_; minimum subscription tier _(Q5)_; list price _(Q3)_ | Detail modal shows no price or contracts (Q5) |
+| Contract | client, agent, start date, end date, total amount paid, active or past _(brief)_; one line per contracted skill with list price and sold price _(brief + Q3)_ | Total paid = sum of sold prices |
+| Error | timestamp, agent, error type, short description, full trace _(brief)_; severity, resolved flag _(Q4, Q7)_ | Severities Critical / Error / Warning / Info; types Timeout, API failure, Rate limit, Auth, Invalid output |
 
 ## Relationships
 
@@ -41,13 +41,18 @@ The brief grades consistency (B5), so the dataset must obey all of these:
 1. Every agent named in Contracts and the Error Log exists in Agent Management.
 2. Every skill on an agent or contract exists in the Skills catalog.
 3. A skill's "agents enabled" count equals the number of agents listing it.
-4. A contract's itemized skill prices sum to its total amount paid (minus any
-   discount, if Q3 adds discounts).
+4. A contract's sold prices sum to its total amount paid. Each sold price is
+   at or below the skill's list price.
 5. A contract's skills are a subset of the rented agent's skills.
 6. Dashboard "active agents" equals the count of agents with status `active`;
    "failing agents" equals the count with status `failing`.
 7. Agents with status `failing` have recent entries in the Error Log.
-8. Dashboard "total revenue (this month)" is derivable from contracts active
-   this month (or stated as a figure with the rule written in `SPECS.md`).
+8. Dashboard "total revenue (this month)" is the sum of sold prices on
+   contracts billed this month. "Discount and coupon losses" is the sum of
+   (list price − sold price) on the same lines.
 9. Minimums: 5 users, 4 agents (all three statuses present), 4 skills,
    4 contracts (active and past), 6 errors (more than one type/severity).
+10. Locks: a skill whose minimum tier is above a user's plan shows as locked
+    for that user. Include at least one locked case so the lock is visible.
+11. After a Delete, all derived numbers are recalculated from the remaining
+    data; historical records (past contracts, errors) keep their references.

@@ -11,7 +11,7 @@ preview, and two tips:
 
 - Link CSS files with `<link rel="stylesheet">`. **Not allowed here** (no custom CSS).
 - Load Tailwind v4 from `https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4`.
-  Relevant to the dark-mode setup in [setup.md](setup.md).
+  This is the version chosen (Q11); setup in [setup.md](setup.md).
 
 ## Google Stitch
 

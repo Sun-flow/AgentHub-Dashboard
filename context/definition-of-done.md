@@ -1,6 +1,8 @@
 # Definition of Done
 
-Every expectation in the [brief](brief.md), as numbered, checkable items. The
+Every expectation in the [brief](brief.md), plus mae's decisions in
+[decisions/](decisions/), as numbered, checkable items. Items sourced from a
+decision are marked `decision Qn`. The
 project is done when every item is checked. Nothing here is optional.
 
 - **Source** points to the brief section the item comes from (B1–B5). Items
@@ -38,9 +40,9 @@ project is done when every item is checked. Nothing here is optional.
 
 | ID | Requirement | Source | Check |
 | --- | --- | --- | --- |
-| T1 | Delivered as one `index.html`, or multiple linked HTML files, one per section. | B4 | File listing |
-| T2 | All styling with Tailwind utility classes, loaded via CDN. | B4, B5 | Read `<head>` |
-| T3 | No custom CSS files. | B4, B5 | No `.css` files, no `<link rel="stylesheet">` to own files |
+| T1 | Delivered as a single `index.html` (brief allows one file per section; mae chose single). | B4, decision Q8 | File listing |
+| T2 | All styling with Tailwind utility classes, loaded from the Tailwind v4 browser CDN. | B4, B5, decision Q11 | Read `<head>` |
+| T3 | No custom CSS files. The only CSS in the page is one `<style type="text/tailwindcss">` block declaring the class-based `dark` variant for Tailwind v4. | B4, B5, decision Q11 | No `.css` files; the one style block contains only the variant line |
 | T4 | No inline `style` attributes. | B4, B5 | `grep -n 'style=' *.html` returns nothing |
 | T5 | All interactivity in vanilla JavaScript. No frameworks, no jQuery, no build tools. | B4 | Read scripts; no `package.json` build step |
 | T6 | All data hardcoded. No API calls, no backend. | B1 | No `fetch`/XHR |
@@ -64,6 +66,7 @@ project is done when every item is checked. Nothing here is optional.
 | D1.2 | Each card has an icon, a label, and a hardcoded value. | B4 | Visual |
 | D1.3 | A full-width placeholder area below the cards represents a weekly activity chart. | B1, B4 | Visual |
 | D1.4 | Active and failing agent counts agree with the Agent Management data. | derived (B5 consistency) | Count agents by status |
+| D1.5 | "Discount and coupon losses" = potential revenue at full list price − revenue at prices actually sold, for the month, computed from contract lines. | decision Q3 | Recompute from contracts |
 
 ## D2 — User Management
 
@@ -73,6 +76,7 @@ project is done when every item is checked. Nothing here is optional.
 | D2.2 | Each row has a `⋮` action dropdown with "View detail" and "Delete". | B1, B4 | Click |
 | D2.3 | "View detail" opens a modal overlay with the full user record. | B1, B4 | Click |
 | D2.4 | The modal closes via a close button and via backdrop click. | B1, B4 | Click both |
+| D2.5 | The user detail modal lists skills/features; any above the user's plan are greyed out with a lock icon naming the required tier. | decision Q5 | Open a Starter user |
 
 ## D3 — Agent Management
 
@@ -96,6 +100,7 @@ project is done when every item is checked. Nothing here is optional.
 | D4.4 | "View detail" opens a modal (counts toward the four-section minimum). | B5 | Click |
 | D4.5 | The modal closes via a close button and via backdrop click. | B5 | Click both |
 | D4.6 | Each skill's "agents enabled" count matches the skill lists in Agent Management. | derived (B5) | Count |
+| D4.7 | Each skill shows its minimum subscription tier. The detail modal does **not** show price or contracts. | decision Q5 | Open modal |
 
 ## D5 — Agent Contracts
 
@@ -103,10 +108,11 @@ project is done when every item is checked. Nothing here is optional.
 | --- | --- | --- | --- |
 | D5.1 | Table (`<table>`) with at least 4 contracts: client, agent, contracted skills, start/end dates, total amount paid. | B1, B4 | Count |
 | D5.2 | Includes both active and past contracts. | B1 | Dates/status |
-| D5.3 | Each row has a `⋮` action dropdown including "View detail". | B1, B4 | Click |
+| D5.3 | Each row has a `⋮` action dropdown with "View detail" (only, unless another option proves necessary). | B1, B4, decision Q6 | Click |
 | D5.4 | "View detail" opens a modal with the full contract breakdown, including itemized skills and their individual prices. | B1, B4 | Click |
 | D5.5 | The modal closes via a close button and via backdrop click. | B5 | Click both |
-| D5.6 | Agent names match agents in Agent Management; skills match the Skills catalog; itemized prices add up to the total. | B5 + derived | Compare |
+| D5.6 | Agent names match agents in Agent Management; skills match the Skills catalog; itemized sold prices add up to the total paid. | B5 + derived | Compare |
+| D5.7 | The breakdown shows each skill's list price and sold price, so the discount is visible. | decision Q3 | Open modal |
 
 ## D6 — Error Log
 
@@ -118,6 +124,8 @@ project is done when every item is checked. Nothing here is optional.
 | D6.4 | "View detail" opens a modal with the full error trace. | B1 | Click |
 | D6.5 | The modal closes via a close button and via backdrop click. | B5 | Click both |
 | D6.6 | Agent names match agents in Agent Management. | B5 | Compare |
+| D6.7 | "Mark as resolved" darkens the entry in place (dimmed row, stays in the list). | decision Q4 | Click |
+| D6.8 | Severities use the agreed colors: Critical red, Error orange, Warning amber, Info blue. | decision Q7 | Visual |
 
 ## X — Global interactions
 
@@ -129,6 +137,8 @@ project is done when every item is checked. Nothing here is optional.
 | X4 | Every dropdown closes when clicking outside its menu. | B4, B5 | Click elsewhere |
 | X5 | Every modal closes via its close button and via backdrop click. | B4, B5 | Click both |
 | X6 | "View detail" opens a modal in at least four sections (Users, Skills, Contracts, Error Log). | B5 | Click |
+| X8 | "Delete" (Users, Agents, Skills) asks for confirmation in an in-page modal, then removes the entity from the in-memory dataset and the UI; dependent numbers (dashboard counts, skill counts) re-render. | decision Q4 | Delete an agent, check dashboard |
+| X9 | Money in USD (`$12,400.00`), dates `Nov 19, 2026`, timestamps `2026-11-19 14:32 UTC`. | decision Q9 | Visual |
 | X7 | The same agent names appear consistently in Agent Management, Contracts, and Error Log, and all other hardcoded data agrees across sections. | B5 | Compare |
 
 ## Not evaluated (do not spend effort here)

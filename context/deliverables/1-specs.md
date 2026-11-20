@@ -8,10 +8,10 @@ panel without asking a single question.
 
 - [ ] Read [../brief.md](../brief.md) end to end.
 - [ ] Every open question in [../open-questions.md](../open-questions.md) is
-      answered by mae or uses its proposed default. Record each choice in the spec.
-- [ ] Tailwind CDN version chosen (affects how dark mode is configured; see
-      [../setup.md](../setup.md)).
-- [ ] Single `index.html` vs one file per section chosen.
+      answered by mae or uses its proposed default (only Q1 and Q2 remain).
+      Record each choice in the spec.
+- [x] Tailwind CDN version chosen: v4 browser CDN (Q11).
+- [x] File structure chosen: single `index.html` (Q8).
 
 ## Required outline
 
@@ -38,9 +38,10 @@ panel without asking a single question.
    - Agent Contracts: table columns; active vs past indicator; dropdown
      options; breakdown modal with itemized skill prices and total (D5.1–D5.5).
    - Error Log: entry columns; badge color per type/severity; dropdown;
-     trace modal; what "Mark as resolved" does (D6.1–D6.5).
+     trace modal; resolved entries darkened in place (D6.1–D6.8).
 5. **Component inventory** (S5): sidebar, top bar, metric card, data table,
-   action dropdown, modal, badge, collapsible skill list, dark mode toggle. For
+   action dropdown, modal, confirm-delete modal, badge, collapsible skill list,
+   dark mode toggle, tier lock indicator. For
    each: purpose, anatomy, states (open/closed, light/dark), where it is used.
 6. **Interaction rules** (X1–X5): exactly how dropdowns open/close (including
    outside click and only one open at a time), how modals open/close (button,

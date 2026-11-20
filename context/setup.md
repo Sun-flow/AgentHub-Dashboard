@@ -18,13 +18,15 @@ What a future agent needs to know before touching this repo.
   [decisions/2026-11-19-no-template-fork.md](decisions/2026-11-19-no-template-fork.md)).
 - `context/` holds planning material and is committed straight to `main`.
 - As of 2026-11-19 the repo holds only `context/`. No `SPECS.md`, no HTML.
+- The prototype will be a single `index.html` at the repo root (Q8).
 
 ## Rules that are easy to break
 
 - **Commit order is graded.** `SPECS.md` must be committed, alone, before any
   `.html` file is ever committed. Do not add HTML (even a scratch file, even in
   `context/`) until that commit is on `main`.
-- **No CSS files, no `style="..."` attributes.** Tailwind classes only.
+- **No CSS files, no `style="..."` attributes.** Tailwind classes only. The
+  single exception is the dark-variant `text/tailwindcss` block below.
 - **Vanilla JS only.** No React, Vue, jQuery, npm build steps.
 - **Hardcoded data only.** No `fetch`, no backend, even though AgentHub has one.
 - **The brief wins.** If a Stitch design, a habit, or another note conflicts
@@ -40,25 +42,24 @@ What a future agent needs to know before touching this repo.
 | A local static server (optional) | Preview | `python3 -m http.server` from the repo root, or just open `index.html`. The template's Flask `server.py` is not needed |
 | GitHub Codespaces or a local clone | Editing | Either is fine per the brief |
 
-## Tailwind CDN and dark mode
+## Tailwind CDN and dark mode (decided: v4, Q11)
 
-Both Tailwind CDNs default to OS-preference dark mode. The brief needs a manual
-toggle, so class-based dark mode must be switched on, then a `dark` class
-toggled on `<html>` by JS.
+Load the Tailwind v4 browser CDN and switch dark mode from OS preference to a
+class, so the toggle can control it:
 
-- **v3 Play CDN** `https://cdn.tailwindcss.com`: set
-  `tailwind.config = { darkMode: 'class' }` in a `<script>` after loading it.
-  No CSS block needed.
-- **v4 browser CDN** `https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4`
-  (the one the 4Geeks template suggests): add
-  `<style type="text/tailwindcss">@custom-variant dark (&:where(.dark, .dark *));</style>`.
-  This is a `<style>` block, which a strict reader of "no custom CSS" could
-  object to. See open question Q11.
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @custom-variant dark (&:where(.dark, .dark *));
+</style>
+```
 
-Persisting the mode across sections: with a single `index.html` that swaps
-visible sections, the class on `<html>` simply stays. With one file per
-section, save the choice in `localStorage` and apply it in `<head>` before
-paint.
+That style block is the **only** CSS allowed in the page. It holds the one
+variant line and nothing else; every other style is a utility class. The
+toggle adds or removes the `dark` class on `<html>`. Because the prototype is a
+single `index.html` (Q8), the class stays put while switching sections, which
+satisfies "mode preserved between sections". Pin an exact v4 version in the
+URL when writing `SPECS.md`.
 
 ## Testing
 

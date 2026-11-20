@@ -1,0 +1,36 @@
+{
+  "commands": {
+    "setup": "",
+    "fast": "node -e \"fs.mkdirSync('.reports',{recursive:true})\" && node --test --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination=.reports/junit.xml",
+    "full": "node -e \"fs.mkdirSync('.reports',{recursive:true})\" && node --test --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination=.reports/junit.xml",
+    "mutation": ""
+  },
+  "junit_path": ".reports/junit.xml",
+  "runner_files": [],
+  "base_branch": "origin/main",
+  "extra_test_globs": [],
+  "not_test_globs": [],
+  "src_dirs": [
+    "index.html"
+  ],
+  "default_tier": "low",
+  "high_paths": [],
+  "spec_readable": [
+    "SPECS.md",
+    "context/**",
+    "docs/**",
+    "specs/**",
+    "spec/**",
+    "README*",
+    "*.md",
+    "**/*.pyi",
+    "**/*.d.ts",
+    "openapi.*",
+    "**/schema*.json"
+  ],
+  "enforcement": "ask",
+  "stop_hook": {
+    "enabled": true,
+    "timeout_s": 300
+  }
+}

@@ -8,14 +8,11 @@ matters, use the default and say so in `SPECS.md`.
 
 | # | Question | Proposed default | Affects |
 | --- | --- | --- | --- |
-| Q1 | Who is an agent's "owner"? | The client company that rents it (for idle agents, "AgentHub"). | Agents, Contracts |
-| Q2 | Are users people at client companies, and is "plan" a subscription tier? | Yes: each user belongs to a client company; plan is the company's tier: Starter / Pro / Enterprise. Tier locks (see Q5 answer) depend on this. | Users, Skills, data |
-| Q14 | Does "safely deletes" (Q4) mean: confirm in an in-page modal, then remove the entity, keep records that reference it as history, and recalculate derived numbers? | Yes, as recorded under "Interpretations" in the [Q3–Q13 decision note](decisions/2026-11-19-open-question-answers.md) and already built into DoD X8 and domain.md rule 11. | Users, Agents, Skills, Dashboard |
-| Q15 | Do tier locks (Q5) work like this: each skill has a minimum tier shown in the Skills catalog, and the user detail modal lists skills with those above the user's plan greyed out behind a lock naming the tier? | Yes, as recorded in the same note and already built into DoD D2.5, D4.7 and domain.md rule 10. | Users, Skills |
+| — | None open. | — | — |
 
 ## Answered
 
-Q3–Q13 were all answered by mae on 2026-11-19. Full wording and the interpretations made
+Q3–Q13 were all answered by mae on 2026-11-19. Q1, Q2, Q14 and Q15 took their proposed defaults on 2026-11-20, see [decisions/2026-11-20-defaults-accepted.md](decisions/2026-11-20-defaults-accepted.md). Full wording and the interpretations made
 are in [decisions/2026-11-19-open-question-answers.md](decisions/2026-11-19-open-question-answers.md).
 
 | # | Question | Answer |
@@ -31,3 +28,7 @@ are in [decisions/2026-11-19-open-question-answers.md](decisions/2026-11-19-open
 | Q11 | Tailwind version | v4 browser CDN, one `text/tailwindcss` style block for the dark variant only. |
 | Q12 | Fork the template? | Not required. See [decisions/2026-11-19-no-template-fork.md](decisions/2026-11-19-no-template-fork.md). |
 | Q13 | "Follow these instructions" link | Ignore. |
+| Q1 | Agent owner | Default: the renting client company; "AgentHub" for idle agents. |
+| Q2 | Users vs clients, plan | Default: users work at client companies; plan = company tier Starter / Pro / Enterprise. |
+| Q14 | Meaning of "safely deletes" | Default: in-page confirm, remove, keep history, recalculate derived numbers. |
+| Q15 | How tier locks work | Default: skills carry a minimum tier; locked skills greyed with a lock naming the tier in the user modal. |

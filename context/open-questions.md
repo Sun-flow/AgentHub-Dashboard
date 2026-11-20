@@ -1,42 +1,33 @@
 # Open questions
 
-Questions raised while ingesting materials, and contradictions between inputs.
-Each entry names the source that raised it. Move an entry to `decisions/` once
-it is answered.
+Gaps in the brief. Each open one has a **proposed default** that stays within
+the brief, so work is never blocked: if mae hasn't answered by the time it
+matters, use the default and say so in `SPECS.md`.
 
-## From the project brief bundle (2026-11-19)
+## Open
 
-1. **Who is an agent's "owner"?** A user, a client company, or AgentHub
-   itself? It affects how Users, Agents, and Contracts link up.
-   _(1-project-brief.png)_
-2. **Users vs clients.** Is a "user" a person at a client company, and is
-   "plan" a client's subscription tier? _(1-project-brief.png)_
-3. **Discount and coupon losses** appear on the Dashboard but nowhere else.
-   Should contracts carry discounts so the number is traceable?
-   _(1-project-brief.png)_
-4. **What should "Delete" and "Mark as resolved" do** in the prototype? Remove
-   the row / change the badge in the DOM, show a confirmation, or do nothing?
-   Form submission is not evaluated, so this is open. _(5-evaluation-criteria.png)_
-5. **Skill "View detail" modal contents** are not specified. _(1-project-brief.png)_
-6. **Contract row actions** besides "View detail" are not named.
-   _(4-dod-build-pt2.png)_
-7. **Error types / severity levels** and their colors are not listed.
-   _(1-project-brief.png)_
-8. **Single file or one file per section?** Both are allowed. Single file makes
-   dark-mode persistence simpler. _(3-dod-build-pt1.png)_
-9. **Currency and date format** for revenue, prices, and timestamps.
-10. **Repo layout vs the brief.** `SPECS.md` must sit at the repo root and be
-    committed before any HTML. This repo's `main` already has the `context/`
-    folder (markdown only, no HTML), which should be fine, but worth confirming.
+| # | Question | Proposed default | Affects |
+| --- | --- | --- | --- |
+| Q1 | Who is an agent's "owner"? | The client company that rents it (for idle agents, "AgentHub"). | Agents, Contracts |
+| Q2 | Are users people at client companies, and is "plan" a subscription tier? | Yes: each user belongs to a client company; plan is the company's tier: Starter / Pro / Enterprise. Tier locks (see Q5 answer) depend on this. | Users, Skills, data |
+| Q14 | Does "safely deletes" (Q4) mean: confirm in an in-page modal, then remove the entity, keep records that reference it as history, and recalculate derived numbers? | Yes, as recorded under "Interpretations" in the [Q3–Q13 decision note](decisions/2026-11-19-open-question-answers.md) and already built into DoD X8 and domain.md rule 11. | Users, Agents, Skills, Dashboard |
+| Q15 | Do tier locks (Q5) work like this: each skill has a minimum tier shown in the Skills catalog, and the user detail modal lists skills with those above the user's plan greyed out behind a lock naming the tier? | Yes, as recorded in the same note and already built into DoD D2.5, D4.7 and domain.md rule 10. | Users, Skills |
 
-## From the html-hello template (2026-11-19)
+## Answered
 
-11. **Tailwind v3 or v4 CDN?** The 4Geeks template uses v4. In v4, class-based
-    dark mode needs a `<style type="text/tailwindcss">` block with
-    `@custom-variant`. That is not a CSS file or an inline `style` attribute,
-    but a strict reader of "no custom CSS" might object. The v3 Play CDN avoids
-    it with a JS config. _(references/html-hello-template.md)_
-12. ~~**Start from the template or not?**~~ Resolved: forking is not
-    required. See `decisions/2026-11-19-no-template-fork.md`.
-13. **"Follow these instructions" link** in the setup steps: target unknown.
-    Worth capturing if it has more guidance. _(7-how-to-start.png)_
+Q3–Q13 were all answered by mae on 2026-11-19. Full wording and the interpretations made
+are in [decisions/2026-11-19-open-question-answers.md](decisions/2026-11-19-open-question-answers.md).
+
+| # | Question | Answer |
+| --- | --- | --- |
+| Q3 | Discount and coupon losses | Potential revenue at full price minus revenue at prices actually sold. Contract lines carry list and sold price. |
+| Q4 | Delete / Mark as resolved | Delete safely removes the entity from the in-memory data and the UI, with dependent views re-rendered. Resolved errors are darkened in place. |
+| Q5 | Skill detail modal | No price or contracts. New rule: features above a user's tier are greyed out with a lock icon naming the tier. |
+| Q6 | Contracts dropdown | "View detail" only. |
+| Q7 | Error severities/types | Critical (red), Error (orange), Warning (amber), Info (blue); types Timeout, API failure, Rate limit, Auth, Invalid output. |
+| Q8 | File structure | Single `index.html`. |
+| Q9 | Formats | USD `$12,400.00`; dates `Nov 19, 2026`; timestamps `2026-11-19 14:32 UTC`. |
+| Q10 | `context/` vs commit order | No conflict, as long as no `.html` lands before `SPECS.md`. |
+| Q11 | Tailwind version | v4 browser CDN, one `text/tailwindcss` style block for the dark variant only. |
+| Q12 | Fork the template? | Not required. See [decisions/2026-11-19-no-template-fork.md](decisions/2026-11-19-no-template-fork.md). |
+| Q13 | "Follow these instructions" link | Ignore. |

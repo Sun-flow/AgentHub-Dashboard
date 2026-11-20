@@ -1,6 +1,6 @@
 ---
 title: The repo does not need to be a fork of html-hello
-topic: decisions
+topic: decision
 sources:
   - mae, chat 2026-11-19
 updated: 2026-11-19
@@ -13,6 +13,6 @@ status: stable
 of `4GeeksAcademy/html-hello`. This repo stays a fresh, standalone repo.
 
 **Why:** mae confirmed it; the template adds little (see
-[../references/html-hello-template.md](../references/html-hello-template.md)).
+[../references.md](../references.md)).
 
 Resolves open question #12.

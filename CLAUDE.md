@@ -1,3 +1,5 @@
+@AGENTS.md
+
 <!-- testing-kit:start (written by the testing kit installer from .claude/testing-kit.json: change the commands there and re-run it; keep the markers) -->
 ## Testing
 

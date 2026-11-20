@@ -44,7 +44,10 @@ Before you stop:
 - `context/` holds planning material: Markdown plus the one script `check.py`.
 - `AGENTS.md` and `CLAUDE.md` at the repo root are pointers that load
   [README.md](README.md) and [todo.md](todo.md) for agents. They hold no
-  project facts.
+  project facts. `CLAUDE.md` also carries a `## Testing` block that the
+  testing kit's installer writes; leave its markers alone.
+- `.claude/`, `.github/workflows/testing-kit.yml`, and `docs/testing/` are the
+  testing kit (see Testing below). They are tooling, not a deliverable.
 - The prototype will be a single `index.html` at the repo root (Q8).
 
 ## Rules that are easy to break
@@ -112,6 +115,16 @@ URL when writing `SPECS.md`.
   script is in [deliverables/4-final-review.md](deliverables/4-final-review.md).
 - Playwright with Chromium is available in cloud sessions if an agent wants to
   automate the same clicks.
+- The testing kit (0.5.0, from `Sun-flow/claude-testing-toolkit`) is installed.
+  Its rules load from `.claude/rules/testing.md`, its settings are in
+  `.claude/testing-kit.json`, and the manual for people is
+  `docs/testing/KIT-GUIDE.md`. The test command is Node's built-in runner
+  (`node --test`, no `package.json`, no dependencies); it picks up files named
+  `*.test.js` or kept in `tests/`. There are no automated tests yet.
+- On every pull request, GitHub runs `python3 context/check.py`, the tests, and
+  two gates that fail when a pull request weakens existing tests or changes
+  the kit's own files. The second case needs the `allow-test-changes` label,
+  which only mae adds.
 
 ## Where things go
 

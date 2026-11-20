@@ -9,10 +9,12 @@ before you stop (routine in [setup.md](setup.md)); do not append to it. On a
 branch it describes that branch, so it is already true when the branch merges.
 
 - **State:** planning is complete and no deliverable has been started. The
-  repo holds `context/`, `AGENTS.md`, and `CLAUDE.md`. There is no `SPECS.md`,
-  no HTML, and no dataset draft.
-- **Last session (2026-11-20):** added the root pointer files, this block, the
-  session routine in setup.md, and `context/check.py`. No project work.
+  repo holds `context/`, `AGENTS.md`, `CLAUDE.md`, and the testing kit
+  (`.claude/`, `.github/`, `docs/testing/`; see Testing in
+  [setup.md](setup.md)). There is no `SPECS.md`, no HTML, no dataset draft,
+  and no automated test.
+- **Last session (2026-11-20):** installed the testing kit and its GitHub
+  checks. No project work.
 - **In progress:** nothing. There is no half-finished work to pick up.
 - **Next action:** Phase 2 below. Draft the dataset in a new
   `context/dataset.md` (add its row to the README index), following
@@ -22,8 +24,9 @@ branch it describes that branch, so it is already true when the branch merges.
   None of them blocks: use the proposed defaults and say so in `SPECS.md`.
 - **Tried and ruled out:** nothing yet.
 - **Last verified:** `python3 context/check.py` printed "0 failed, 0 to look
-  at", and failed as it should in a throwaway clone with a commit on local
-  `main` (2026-11-20).
+  at", and the kit's own check (`install.py --check . --run` from a clone of
+  the kit) found the hooks wired up and the test command exiting 0 with no
+  tests (2026-11-20).
 
 ## Plan
 

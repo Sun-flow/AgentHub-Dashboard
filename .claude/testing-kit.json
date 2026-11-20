@@ -11,11 +11,13 @@
   "extra_test_globs": [],
   "not_test_globs": [],
   "src_dirs": [
-    "src"
+    "index.html"
   ],
   "default_tier": "low",
   "high_paths": [],
   "spec_readable": [
+    "SPECS.md",
+    "context/**",
     "docs/**",
     "specs/**",
     "spec/**",

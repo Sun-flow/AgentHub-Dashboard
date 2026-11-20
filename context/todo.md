@@ -22,8 +22,9 @@ branch it describes that branch, so it is already true when the branch merges.
 - **Waiting on mae:** Q1, Q2, Q14, Q15 in [open-questions.md](open-questions.md).
   None of them blocks: use the proposed defaults and say so in `SPECS.md`.
 - **Tried and ruled out:** nothing yet.
-- **Last verified:** `python3 context/check.py` passed with no failures and no
-  warnings (2026-11-20).
+- **Last verified:** `python3 context/check.py` printed "0 failed, 0 to look
+  at", and failed as it should in a throwaway clone with a commit on local
+  `main` (2026-11-20).
 
 ## Plan
 

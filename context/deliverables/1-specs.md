@@ -6,8 +6,8 @@ panel without asking a single question.
 
 ## Before writing
 
-- [ ] Read [../brief.md](../brief.md) end to end.
-- [ ] Every open question in [../open-questions.md](../open-questions.md) is
+- [x] Read [../brief.md](../brief.md) end to end.
+- [x] Every open question in [../open-questions.md](../open-questions.md) is
       answered by mae or uses its proposed default.
       Record each choice in the spec.
 - [x] Tailwind CDN version chosen: v4 browser CDN (Q11).
@@ -63,20 +63,20 @@ panel without asking a single question.
 
 ## Completion checklist
 
-- [ ] S1 product description present
-- [ ] S2 tech stack and constraints present
-- [ ] S3 at least 3 specs in each of the six sections (count them)
-- [ ] S4 every spec names a component, its contents, and its behavior
-- [ ] S5 component inventory includes all seven required components
-- [ ] S6 acceptance criteria are a numbered list of verifiable conditions
-- [ ] S7 at least one criterion each for dropdown, modal, collapsible, dark mode
-- [ ] S8 full hardcoded dataset included and internally consistent
-- [ ] Every DoD item in L, D1–D6, X, T is covered somewhere in the spec
-- [ ] Cold-read test: a fresh agent given only `SPECS.md` lists no questions
-- [ ] P1 file is at the repo root, named exactly `SPECS.md`
-- [ ] P2 committed alone (the commit touches only `SPECS.md`)
-- [ ] P3 no `.html` file exists anywhere in the repo history before this commit
-- [ ] Opened as its own PR, holding only that one commit, and merged to `main` before any HTML PR (P7)
+- [x] S1 product description present
+- [x] S2 tech stack and constraints present
+- [x] S3 at least 3 specs in each of the six sections (count them)
+- [x] S4 every spec names a component, its contents, and its behavior
+- [x] S5 component inventory includes all seven required components
+- [x] S6 acceptance criteria are a numbered list of verifiable conditions
+- [x] S7 at least one criterion each for dropdown, modal, collapsible, dark mode
+- [x] S8 full hardcoded dataset included and internally consistent
+- [x] Every DoD item in L, D1–D6, X, T is covered somewhere in the spec
+- [x] Cold-read test: a fresh agent given only `SPECS.md` lists no questions
+- [x] P1 file is at the repo root, named exactly `SPECS.md`
+- [x] P2 committed alone (the commit touches only `SPECS.md`)
+- [x] P3 no `.html` file exists anywhere in the repo history before this commit
+- [x] Opened as its own PR, holding only that one commit, and merged to `main` before any HTML PR (P7)
 
 Later edits to `SPECS.md` are allowed in later commits, but the first version
 must land before any HTML.

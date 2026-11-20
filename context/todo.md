@@ -8,30 +8,29 @@ This block is the only place the project's status is written. Rewrite it
 before you stop (routine in [setup.md](setup.md)); do not append to it. On a
 branch it describes that branch, so it is already true when the branch merges.
 
-- **State:** planning is complete. `SPECS.md` is written and waits in its own
-  pull request (#4, branch `claude/project-thread-kng3jc`, one commit). There
-  is no HTML and no automated test. This branch adds the accessibility items
-  W1–W9 to the DoD and does not touch `SPECS.md`.
-- **Last session (2026-11-20):** at mae's request, imported the accessibility
-  rules from mae's past builds (TrackFlow-Company-Overhaul, tailwind-dashboard,
-  html-tailwindcss-project) as DoD section W; see
-  [decisions/2026-11-20-accessibility-from-past-builds.md](decisions/2026-11-20-accessibility-from-past-builds.md).
-  `check.py` now knows the W IDs.
+- **State:** `SPECS.md` is on `main` (PR #4), committed alone, and the
+  accessibility DoD items W1–W9 are on `main` (PR #5). This branch adds the
+  accessibility rules to `SPECS.md` (13.7, acceptance criteria 49–56) in a
+  commit of its own. There is no HTML and no automated test.
+- **Last session (2026-11-20):** wrote that `SPECS.md` change: skip link, one
+  `sr-only` `<h1>`, sections labelled by their `<h2>`, `aria-hidden` on every
+  icon, `inert` on collapsed skill lists, `motion-reduce:transition-none`, and
+  muted text instead of `opacity-50` for resolved errors (ERR-5) and locked
+  skills (USR modal, 12.11) so their text keeps AA contrast. The chart
+  placeholder text changed from `slate-400`/`dark:slate-500` to
+  `slate-500`/`dark:slate-400` for the same reason.
 - **In progress:** nothing half-finished.
-- **Next action:** once PR #4 is merged, cover the W items `SPECS.md` does
-  not yet state, in a new commit to `SPECS.md` on its own branch: a skip link
-  (W7), `aria-hidden="true"` on the Heroicons SVGs (W4),
-  `motion-reduce:transition-none` on the skill-list, chevron and menu
-  transitions (W6), `aria-labelledby` on each section (W7), and a check that
-  the palette's muted text and badges reach AA contrast in both themes (W5).
-  The pending spec already covers focus rings, `aria-*` states, Escape and
-  focus return (W2, W3, W8). Do not add these to PR #4: it must stay one commit.
-- **Waiting on mae:** merging PR #4 and this pull request; Q1, Q2, Q14, Q15 in
-  [open-questions.md](open-questions.md) (none blocks).
-- **Tried and ruled out:** prefix A for the new items, because `SPECS.md`
-  already uses A1–A14 for its assumptions.
-- **Last verified:** `python3 context/check.py` printed "0 failed, 0 to look
-  at" on this branch (2026-11-20).
+- **Next action:** Phase 4, the Stitch proposal from `SPECS.md`. Separately,
+  the bookkeeping for PR #4 is still owed: a decision note for mae's "start
+  with defaults" (Q1, Q2, Q14, Q15), moving those to Answered in
+  [open-questions.md](open-questions.md), and ticking Phases 1–3 below.
+- **Waiting on mae:** merging this pull request.
+- **Tried and ruled out:** keeping `opacity-50` on dimmed rows: axe-core
+  counts opacity in contrast, and half-opacity slate text fails 4.5:1.
+- **Last verified:** `python3 context/check.py` printed "0 failed" on this
+  branch (2026-11-20). Contrast figures for the muted pairs were judged from
+  Tailwind's slate scale, not measured; W9's axe scan at build time measures
+  them.
 
 ## Plan
 
@@ -66,7 +65,7 @@ before it.
 - [ ] Write `SPECS.md` at the repo root following [deliverables/1-specs.md](deliverables/1-specs.md)
 - [ ] Cold-read test with a fresh agent
 - [ ] Commit `SPECS.md` **alone**, before any HTML file exists, in a pull request that holds only that commit
-- [ ] After that pull request is merged, add the accessibility gaps listed in "Now" (W4–W7) to `SPECS.md` in a new commit of its own
+- [x] After that pull request is merged, add the accessibility rules (W1–W9) to `SPECS.md` in a new commit of its own (this branch, 2026-11-20)
 - [ ] After that pull request is merged, delete `context/dataset.md` in a separate pull request (the spec is then the only home for the data)
 
 ## Phase 4 — Stitch visual proposal

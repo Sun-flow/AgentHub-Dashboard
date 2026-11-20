@@ -4,17 +4,22 @@ Planning material for the AgentHub admin panel prototype: an HTML, Tailwind,
 and vanilla JS admin panel for a platform where companies rent AI agents. This
 folder is information and plans only. Nothing here is app code.
 
-**Status (2026-11-19):** brief synthesized; mae answered Q3–Q13. Q1 and Q2
-still use proposed defaults. Next step: Phase 2 in [todo.md](todo.md), plan
-the dataset, then write `SPECS.md`.
+**Status:** the current state, the handoff from the last session, and the next
+action are in the "Now" block at the top of [todo.md](todo.md). Status is
+written nowhere else.
 
 ## Start here
 
+Read in this order. This is the only reading list; other files point here.
+
 1. [brief.md](brief.md) — the full client brief. **The brief is law.**
 2. [definition-of-done.md](definition-of-done.md) — every brief expectation as a numbered, checkable item.
-3. [todo.md](todo.md) — the ordered plan and where the work stands.
-4. [setup.md](setup.md) — repo state, rules that are easy to break, tools, Tailwind dark-mode setup, testing.
-5. [open-questions.md](open-questions.md) — gaps in the brief, each with a proposed default.
+3. [todo.md](todo.md) — "Now" (where the work stands and the handoff), then the ordered plan.
+4. [setup.md](setup.md) — session routine, rules that are easy to break, which source wins, where things go, tools, gotchas.
+5. [open-questions.md](open-questions.md) and [decisions/](decisions/) — what is waiting on mae, and what mae has settled.
+6. The checklist in [deliverables/](deliverables/) for the deliverable in hand, and [domain.md](domain.md) when writing data or the spec.
+
+Then run `python3 context/check.py` from the repo root and read what it prints.
 
 ## Index
 
@@ -22,17 +27,18 @@ the dataset, then write `SPECS.md`.
 | --- | --- |
 | [brief.md](brief.md) | Complete transcription of the brief (sections B0–B5) |
 | [definition-of-done.md](definition-of-done.md) | DoD items P, S, T, L, D1–D6, X with source and check |
-| [todo.md](todo.md) | Phases 0–6 with checkboxes |
-| [setup.md](setup.md) | Reading order, repo, rules, tools, dark mode, testing, how to add material |
+| [todo.md](todo.md) | "Now" block (state, handoff, next action), then Phases 0–6 with checkboxes |
+| [setup.md](setup.md) | Session routine, repo, rules, which source wins, where things go, tools, dark mode, testing, gotchas |
 | [domain.md](domain.md) | Entities, relationships, and consistency rules for the hardcoded data |
 | [references.md](references.md) | html-hello template, Google Stitch, Tailwind |
-| [open-questions.md](open-questions.md) | Q1–Q2 open with defaults; Q3–Q13 answered |
+| [open-questions.md](open-questions.md) | Questions waiting on mae, each with a proposed default, and the answered ones |
 | [deliverables/README.md](deliverables/README.md) | The three deliverables and their order |
 | [deliverables/1-specs.md](deliverables/1-specs.md) | SPECS.md outline and completion checklist |
 | [deliverables/2-stitch-proposal.md](deliverables/2-stitch-proposal.md) | Stitch proposal steps and checklist |
 | [deliverables/3-prototype.md](deliverables/3-prototype.md) | Build order and full completion checklist |
 | [deliverables/4-final-review.md](deliverables/4-final-review.md) | Git, static, and manual test script mirroring the evaluation |
-| [decisions/](decisions/) | Decisions made by mae: repo workflow, no fork, answers to Q3–Q13 |
+| [decisions/](decisions/) | One note per decision or batch of answers from mae |
+| `check.py` | Checks the commit-order rule, links, DoD IDs, question numbers, the handoff, and branches. Run at session start and before every push |
 | [_templates/context-note.md](_templates/context-note.md) | Template for a new note |
 
 ## Ingestion log
@@ -44,3 +50,5 @@ the dataset, then write `SPECS.md`.
 | 2026-11-19 | mae: forking not required | decisions/2026-11-19-no-template-fork.md |
 | 2026-11-19 | Synthesis pass | Raw screenshots and first-pass notes replaced by the files above (originals are in git history before this commit) |
 | 2026-11-19 | mae's answers to Q3–Q13 | decisions/2026-11-19-open-question-answers.md; DoD items D1.5, D2.5, D4.7, D5.7, D6.7, D6.8, X8, X9 added, T1–T3, D5.3 changed; checklists, domain, setup updated |
+| 2026-11-20 | mae's memory bank generator v5.4 (prompt and checker, uploaded) | Assessed against context/; five ideas adopted, see decisions/2026-11-20-keep-context-adopt-memory-bank-ideas.md; the upload is not kept in the repo |
+| 2026-11-20 | mae: avoid development that goes directly to main | decisions/2026-11-20-branches-and-pull-requests.md replaces the direct-to-main decision; setup.md, brief.md note, checklists updated |

@@ -1,6 +1,6 @@
 ---
 title: The repo does not need to be a fork of html-hello
-topic: decisions
+topic: decision
 sources:
   - mae, chat 2026-11-19
 updated: 2026-11-19

@@ -10,10 +10,12 @@ matters, use the default and say so in `SPECS.md`.
 | --- | --- | --- | --- |
 | Q1 | Who is an agent's "owner"? | The client company that rents it (for idle agents, "AgentHub"). | Agents, Contracts |
 | Q2 | Are users people at client companies, and is "plan" a subscription tier? | Yes: each user belongs to a client company; plan is the company's tier: Starter / Pro / Enterprise. Tier locks (see Q5 answer) depend on this. | Users, Skills, data |
+| Q14 | Does "safely deletes" (Q4) mean: confirm in an in-page modal, then remove the entity, keep records that reference it as history, and recalculate derived numbers? | Yes, as recorded under "Interpretations" in the [Q3–Q13 decision note](decisions/2026-11-19-open-question-answers.md) and already built into DoD X8 and domain.md rule 11. | Users, Agents, Skills, Dashboard |
+| Q15 | Do tier locks (Q5) work like this: each skill has a minimum tier shown in the Skills catalog, and the user detail modal lists skills with those above the user's plan greyed out behind a lock naming the tier? | Yes, as recorded in the same note and already built into DoD D2.5, D4.7 and domain.md rule 10. | Users, Skills |
 
 ## Answered
 
-All answered by mae on 2026-11-19. Full wording and the interpretations made
+Q3–Q13 were all answered by mae on 2026-11-19. Full wording and the interpretations made
 are in [decisions/2026-11-19-open-question-answers.md](decisions/2026-11-19-open-question-answers.md).
 
 | # | Question | Answer |

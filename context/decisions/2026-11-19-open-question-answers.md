@@ -26,7 +26,7 @@ proposed defaults in [../open-questions.md](../open-questions.md).
 | Q11 | **Tailwind v4 browser CDN**, with one `<style type="text/tailwindcss">` block holding only the dark-mode variant line. mae allowed relaxing the custom-CSS rule for this unless the benefit was marginal; the benefit is real (4Geeks' own template points to v4, so it is what graders expect, and it is the current version), and the block is neither a CSS file nor an inline `style` attribute, so it meets the brief's wording. | "okay with lightening the custom CSS restriction for the more modern tailwind version, unless you think the benefit is marginal" |
 | Q13 | Ignore the "Follow these instructions" link. | "dont worry about it" |
 
-## Interpretations made while recording (confirm or correct)
+## Interpretations made while recording (open as Q14 and Q15)
 
 - **Q4a "safely":** Delete asks for confirmation in an in-page modal (not a
   browser `confirm()` dialog), then removes the entity. Records that reference

@@ -2,7 +2,8 @@
 
 Every expectation in the [brief](brief.md), plus mae's decisions in
 [decisions/](decisions/), as numbered, checkable items. Items sourced from a
-decision are marked `decision Qn`. The
+decision are marked `decision Qn` (`decision W` for the accessibility
+items, which come from one note). The
 project is done when every item is checked. Nothing here is optional.
 
 - **Source** points to the brief section the item comes from (B1–B5). Items
@@ -141,6 +142,25 @@ project is done when every item is checked. Nothing here is optional.
 | X8 | "Delete" (Users, Agents, Skills) asks for confirmation in an in-page modal, then removes the entity from the in-memory dataset and the UI; dependent numbers (dashboard counts, skill counts) re-render. | decision Q4 | Delete an agent, check dashboard |
 | X9 | Money in USD (`$12,400.00`), dates `Nov 19, 2026`, timestamps `2026-11-19 14:32 UTC`. | decision Q9 | Visual |
 | X7 | The same agent names appear consistently in Agent Management, Contracts, and Error Log, and all other hardcoded data agrees across sections. | B5 | Compare |
+
+## W — Accessibility
+
+mae's bar from past builds, not graded by the brief
+([decisions/2026-11-20-accessibility-from-past-builds.md](decisions/2026-11-20-accessibility-from-past-builds.md)).
+Every item is met with markup, ARIA, JS, or Tailwind utilities, so none
+conflicts with T3 or T4. Check in light and dark, at desktop and tablet width.
+
+| ID | Requirement | Source | Check |
+| --- | --- | --- | --- |
+| W1 | Every interactive element (sidebar links, toggle, `⋮` triggers and menu items, expand controls, modal buttons, textarea) can be reached with Tab and used with Enter or Space, in the visual order. No positive `tabindex`. | decision W | Keyboard walk, no mouse |
+| W2 | Every interactive element shows a visible focus indicator in both themes. `outline-none` only appears together with a replacement ring. | decision W | Keyboard walk; `grep -n 'outline-none' index.html` and check each hit has a `ring` |
+| W3 | Controls without visible text have an `aria-label` (`⋮`, Close, the theme toggle, sidebar links when only the icon shows); the Configure textarea has a label. State attributes match what is on screen: `aria-current` on the active link, `aria-expanded` on menus and expand controls, `aria-pressed` on the toggle, `role="dialog"` and `aria-modal` on modals. | decision W | Read markup; toggle each control and re-read |
+| W4 | Decorative icons, SVGs and emoji carry `aria-hidden="true"`; any meaningful image has descriptive `alt`. Status and severity are never shown by color alone (each badge has its text). | decision W | `grep` the `<svg` and emoji; read badges |
+| W5 | Text meets WCAG 2.2 AA contrast, 4.5:1 (3:1 for large text), in light and dark. Focus rings and badge outlines meet 3:1 against their background. | decision W | W9 scan plus spot checks of muted text and badges |
+| W6 | Anything that animates (the skill-list transition, menus, modals) also has `motion-reduce:transition-none`. | decision W | `grep -n 'transition' index.html` |
+| W7 | A "Skip to content" link is the first focusable element and moves focus to `<main>`. The page has one `<h1>`, `<nav aria-label>`, and each section is labelled by its heading (`aria-labelledby`). | decision W | Tab once from page load; read markup |
+| W8 | Escape closes the open menu or modal. Opening a modal moves focus into it; closing returns focus to the control that opened it (or to the section heading when that control is gone). | decision W | Keyboard walk |
+| W9 | axe-core reports no violations on every section, with a menu and a modal open, in light and dark. | decision W | Playwright run that injects axe-core from a CDN (no `package.json`); then the W1 walk, since axe cannot judge everything |
 
 ## Not evaluated (do not spend effort here)
 

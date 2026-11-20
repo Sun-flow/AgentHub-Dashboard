@@ -53,7 +53,13 @@ grep -rnE 'react|vue|jquery' --include='*.html' -i .   # expect nothing (T5)
 8c. Open a Starter-plan user: higher-tier skills are greyed with a lock and tier name.
 8. Check the same agent names appear in Agents, Contracts, and Error Log.
 9. Repeat steps 1, 4, 5, 6 at tablet width; nothing overflows or becomes unusable.
+10. Put the mouse away and repeat steps 1–6 with the keyboard only: the skip
+   link comes first, focus is always visible, Escape closes menus and modals,
+   and focus returns to the control that opened them (W1–W3, W7, W8).
+11. Run the axe-core scan on every section, with a menu and a modal open, in
+   both themes: no violations (W5, W9).
 
 - [ ] All steps pass at desktop width
 - [ ] All steps pass at tablet width
+- [ ] Keyboard walk and axe-core scan pass in light and dark (W1–W9)
 - [ ] The panel looks professional and reads as a reference for backend engineers (T9)

@@ -50,5 +50,5 @@ Then run `python3 context/check.py` from the repo root and read what it prints.
 | 2026-11-19 | mae: forking not required | decisions/2026-11-19-no-template-fork.md |
 | 2026-11-19 | Synthesis pass | Raw screenshots and first-pass notes replaced by the files above (originals are in git history before this commit) |
 | 2026-11-19 | mae's answers to Q3–Q13 | decisions/2026-11-19-open-question-answers.md; DoD items D1.5, D2.5, D4.7, D5.7, D6.7, D6.8, X8, X9 added, T1–T3, D5.3 changed; checklists, domain, setup updated |
+| 2026-11-19 | mae: no more direct commits to main | decisions/2026-11-19-repo-workflow.md rewritten, setup.md |
 | 2026-11-20 | mae's memory bank generator v5.4 (prompt and checker, uploaded) | Assessed against context/; five ideas adopted, see decisions/2026-11-20-keep-context-adopt-memory-bank-ideas.md; the upload is not kept in the repo |
-| 2026-11-20 | mae: avoid development that goes directly to main | decisions/2026-11-20-branches-and-pull-requests.md replaces the direct-to-main decision; setup.md, brief.md note, checklists updated |

@@ -14,9 +14,9 @@ bracketed notes `[like this]` are ours.
 Only two departures from the brief are approved, both by mae:
 - The repo does not have to be a fork of the template
   ([decisions/2026-11-19-no-template-fork.md](decisions/2026-11-19-no-template-fork.md)).
-- `context/` lives in the repo alongside the deliverables (no HTML). Like
-  everything else, it reaches `main` through pull requests
-  ([decisions/2026-11-20-branches-and-pull-requests.md](decisions/2026-11-20-branches-and-pull-requests.md)).
+- `context/` lives in the repo alongside the deliverables (markdown only, no
+  HTML). All changes reach `main` through pull requests
+  ([decisions/2026-11-19-repo-workflow.md](decisions/2026-11-19-repo-workflow.md)).
 
 ---
 

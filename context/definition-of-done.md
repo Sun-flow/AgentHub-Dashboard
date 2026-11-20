@@ -22,6 +22,7 @@ project is done when every item is checked. Nothing here is optional.
 | P4 | A Google Stitch visual proposal was generated from `SPECS.md` and used as design guidance only. | B2, B3 | Proposal saved or described in `context/`; final UI matches the spec, not Stitch |
 | P5 | The final prototype matches the requirements exactly where Stitch differs (structure, components, interactions). | B3 | Review against D-items below |
 | P6 | Work happens in this team's own GitHub repo (`Sun-flow/AgentHub-Dashboard`). Forking the template is not required. | B2 + decision | — |
+| P7 | Every change reaches `main` through a reviewed pull request; the SPECS.md PR merges before any PR that adds HTML, and its commit is not squashed together with HTML. | decision | PR history |
 
 ## S — SPECS.md content
 

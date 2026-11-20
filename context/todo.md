@@ -12,8 +12,7 @@ branch it describes that branch, so it is already true when the branch merges.
   repo holds `context/`, `AGENTS.md`, and `CLAUDE.md`. There is no `SPECS.md`,
   no HTML, and no dataset draft.
 - **Last session (2026-11-20):** added the root pointer files, this block, the
-  session routine in setup.md, and `context/check.py`, and moved the repo to
-  branches and pull requests. No project work.
+  session routine in setup.md, and `context/check.py`. No project work.
 - **In progress:** nothing. There is no half-finished work to pick up.
 - **Next action:** Phase 2 below. Draft the dataset in a new
   `context/dataset.md` (add its row to the README index), following

@@ -72,7 +72,7 @@ panel without asking a single question.
 - [ ] P1 file is at the repo root, named exactly `SPECS.md`
 - [ ] P2 committed alone (the commit touches only `SPECS.md`)
 - [ ] P3 no `.html` file exists anywhere in the repo history before this commit
-- [ ] Merged to `main` through a pull request that holds only that one commit
+- [ ] Opened as its own PR, holding only that one commit, and merged to `main` before any HTML PR (P7)
 
 Later edits to `SPECS.md` are allowed in later commits, but the first version
 must land before any HTML.

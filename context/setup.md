@@ -40,7 +40,7 @@ Before you stop:
   [decisions/2026-11-19-no-template-fork.md](decisions/2026-11-19-no-template-fork.md)).
 - Nothing is committed straight to `main`, `context/` included. Every change
   goes on a branch and reaches `main` through a pull request that mae merges
-  ([decisions/2026-11-20-branches-and-pull-requests.md](decisions/2026-11-20-branches-and-pull-requests.md)).
+  ([decisions/2026-11-19-repo-workflow.md](decisions/2026-11-19-repo-workflow.md)).
 - `context/` holds planning material: Markdown plus the one script `check.py`.
 - `AGENTS.md` and `CLAUDE.md` at the repo root are pointers that load
   [README.md](README.md) and [todo.md](todo.md) for agents. They hold no
@@ -143,8 +143,10 @@ being true.
   separate pull request after it. (2026-11-20)
 - The two `@context/...` lines in the root `AGENTS.md` must each stay alone on
   a line with no backticks, or Claude Code will not load them. (2026-11-20)
-- Dates in `context/` are UTC (`date -u +%F`). mae writes in US Eastern time,
-  so an evening message from mae carries the next day's UTC date. (2026-11-20)
+- Dates written from 2026-11-20 on are UTC (`date -u +%F`), because that is
+  what an agent's clock gives. Earlier entries, and anything quoting the time
+  of a message from mae, use US Eastern, so an evening message from mae can
+  carry the previous day's date. (2026-11-20)
 - If two branches both rewrote the "Now" block, do not merge the two texts:
   write it again from what is true after the merge. (2026-11-20)
 - mae likes `context/` lean: change an existing file before adding a new one,
